@@ -1,6 +1,10 @@
+.tab-wrapper-edit-container {
+   position: relative;
+   z-index: 1;
+}
+
 .tab-wrapper-edit-container div {
    display: flex;
-   gap: 1rem;
 }
 
 .wp-block-artedwa-blocks-tab-header {

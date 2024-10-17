@@ -8,8 +8,30 @@ import "./style.css"
 import "./editor.css"
 import metadata from "./block.json"
 
+// Returns true/false if an innerblock of a tab header is selected.
+function hasSelectedInnerBlock(props) {
+   const select = wp.data.select("core/block-editor")
+   const selected = select.getBlockSelectionStart()
+   const inner = select.getBlock(props.clientId).innerBlocks
+   for (let i = 0; i < inner.length; i++) {
+      if (
+         inner[i].clientId === selected ||
+         (inner[i].innerBlocks.length && hasSelectedInnerBlock(inner[i]))
+      ) {
+         return true
+      }
+   }
+   return false
+}
+
 registerBlockType(metadata.name, {
-   edit: ({ attributes, setAttributes, isSelected }) => {
+   edit: props => {
+      const attributes = props.attributes
+      const setAttributes = props.setAttributes
+      const isSelected = props.isSelected
+      // Expands the functionality of isSelected to include the selection of child elements
+      const selected = props.isSelected || hasSelectedInnerBlock(props)
+
       useEffect(() => {
          if (!attributes.id) {
             setAttributes((attributes.id = crypto.randomUUID()))
@@ -23,9 +45,9 @@ registerBlockType(metadata.name, {
                value={attributes.title}
                onChange={e => setAttributes((attributes.title = e))}
                type="text"
-               className="tab-header-edit-input"
+               disabled={!selected}
             />
-            <InnerBlocks orientation="vertical" />
+            {selected && <InnerBlocks orientation="vertical" />}
          </div>
       )
    },
