@@ -7,6 +7,8 @@
    "category": "widgets",
    "icon": "media-interactive",
    "description": "Wrapper for tabs.",
+   "allowedBlocks": ["artedwa-blocks/tab-header"],
+   "attributes": {},
    "example": {},
    "supports": {
       "interactivity": true

@@ -8,6 +8,15 @@
    "icon": "media-interactive",
    "description": "Tab Header Block",
    "example": {},
+   "attributes": {
+      "id": {
+         "type": "string"
+      },
+      "title": {
+         "type": "string",
+         "default": "Tab Title"
+      }
+   },
    "supports": {
       "interactivity": true
    },

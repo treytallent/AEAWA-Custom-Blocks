@@ -1,9 +1,25 @@
+import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
+import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
 import "./style.css"
 import "./editor.css"
-import Edit from "./edit"
 import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
-   edit: Edit,
+   edit: () => {
+      const blockProps = useBlockProps()
+      return (
+         <div {...blockProps} className="tab-wrapper-edit-container">
+            <InnerBlocks orientation="horizontal" />
+         </div>
+      )
+   },
+   save: () => {
+      const blockProps = useBlockProps.save()
+      return (
+         <div {...blockProps}>
+            <InnerBlocks.Content />
+         </div>
+      )
+   },
 })

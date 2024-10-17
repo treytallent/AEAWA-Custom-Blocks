@@ -1,0 +1,9 @@
+.tab-wrapper-edit-container div {
+   display: flex;
+   gap: 1rem;
+}
+
+.wp-block-artedwa-blocks-tab-header {
+   display: flex;
+   flex-direction: column;
+}
