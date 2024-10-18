@@ -1,4 +1,17 @@
-.tab-header-edit-container {
+.tabs-list {
+   padding-left: 0;
+}
+
+.tabs-list .block-editor-block-list__layout {
+   display: flex;
+}
+
+.tabs-list li {
+   padding: 8px;
+   list-style: none;
+}
+
+/* .tab-header-edit-container {
    display: flex;
    position: relative;
    z-index: 100;
@@ -17,4 +30,4 @@
 .tab-header-edit-container input[disabled] {
    background-color: lightgrey;
    color: grey;
-}
+} */

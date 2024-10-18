@@ -1,22 +1,13 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/tab-header",
+   "name": "artedwa-blocks/tabs-list",
    "version": "0.1.0",
-   "title": "Tab Header",
+   "title": "Tabs List",
    "category": "widgets",
    "icon": "media-interactive",
-   "description": "Tab Header Block",
+   "description": "Contains the Tab blocks.",
    "example": {},
-   "attributes": {
-      "id": {
-         "type": "string"
-      },
-      "title": {
-         "type": "string",
-         "default": "Tab Title"
-      }
-   },
    "supports": {
       "interactivity": true
    },

@@ -16,5 +16,5 @@ import { useBlockProps } from "@wordpress/block-editor"
 export default function Edit({ attributes, setAttributes }) {
    const blockProps = useBlockProps()
 
-   return <p {...blockProps}>{__("Tab Body")}</p>
+   return <p {...blockProps}>{__("Panel")}</p>
 }

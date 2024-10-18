@@ -1,14 +1,13 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/tab-wrapper",
+   "name": "artedwa-blocks/tabs-wrapper",
    "version": "0.1.0",
    "title": "Tabs",
    "category": "widgets",
    "icon": "media-interactive",
-   "description": "Wrapper for tabs.",
-   "allowedBlocks": ["artedwa-blocks/tab-header"],
-   "attributes": {},
+   "description": "Wrapper for tabs and their panels.",
+   "allowedBlocks": ["artedwa-blocks/tabs-list", "artedwa-blocks/panels-list"],
    "example": {},
    "supports": {
       "interactivity": true

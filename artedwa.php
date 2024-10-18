@@ -27,10 +27,12 @@ if (! defined('ABSPATH')) {
  */
 function artedwa_blocks_artedwa_block_init()
 {
+	register_block_type_from_metadata(__DIR__ . '/build/tabs/tabs-wrapper');
+	register_block_type_from_metadata(__DIR__ . '/build/tabs/tabs-list');
+	register_block_type_from_metadata(__DIR__ . '/build/tabs/tab');
+	register_block_type_from_metadata(__DIR__ . '/build/tabs/panels-list');
+	register_block_type_from_metadata(__DIR__ . '/build/tabs/panel');
 	register_block_type_from_metadata(__DIR__ . '/build/sample-block');
-	register_block_type_from_metadata(__DIR__ . '/build/tabs/tab-body');
-	register_block_type_from_metadata(__DIR__ . '/build/tabs/tab-header');
-	register_block_type_from_metadata(__DIR__ . '/build/tabs/tab-wrapper');
 }
 
 add_action('init', 'artedwa_blocks_artedwa_block_init');
