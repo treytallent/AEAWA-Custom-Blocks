@@ -20,9 +20,10 @@ const { state } = store("artedwa", {
    },
    callbacks: {
       logIsOpen: () => {
-         const { isOpen } = getContext()
+         // const { isOpen } = getContext()
          // Log the value of `isOpen` each time it changes.
-         console.log(`Is open: ${isOpen}`)
+         // console.log("logging from sample block")
+         // console.log(`Is open: ${isOpen}`)
       },
    },
 })

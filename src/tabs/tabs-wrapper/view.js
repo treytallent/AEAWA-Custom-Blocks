@@ -1,7 +1,18 @@
 import { store, getContext } from "@wordpress/interactivity"
 
-const { state } = store("artedwa-blocks", {
-   state: {},
-   actions: {},
+const { state } = store("artedwa", {
+   state: {
+      activeId: 0,
+   },
+   actions: {
+      isActive: () => {
+         const context = getContext()
+         return context.id === state.activeId
+      },
+      setActive: () => {
+         const context = getContext()
+         state.activeId = context.id
+      },
+   },
    callbacks: {},
 })

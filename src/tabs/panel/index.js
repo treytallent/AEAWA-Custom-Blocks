@@ -1,7 +1,8 @@
 import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
-import "./style.css"
+import { useEffect } from "@wordpress/element"
+import "./editor.css"
 import metadata from "./block.json"
 
 const blocktemplate = [
@@ -9,9 +10,18 @@ const blocktemplate = [
 ]
 
 registerBlockType(metadata.name, {
-   edit: () => {
-      const blockProps = useBlockProps()
+   edit: props => {
+      // Sets the attribute id equal to the index value of a panel within it's parent panels-list
+      useEffect(() => {
+         if (!props.attributes.id === undefined) return
+         const indexValue = wp.data
+            .select("core/block-editor")
+            .getBlockIndex(props.clientId, ["artedwa-blocks/tab"])
 
+         props.setAttributes({ id: indexValue })
+      })
+
+      const blockProps = useBlockProps()
       return (
          <div {...blockProps}>
             <InnerBlocks template={blocktemplate} orientation="vertical" />
@@ -20,10 +30,6 @@ registerBlockType(metadata.name, {
    },
    save: () => {
       const blockProps = useBlockProps.save()
-      return (
-         <div {...blockProps}>
-            <InnerBlocks.Content />
-         </div>
-      )
+      return <InnerBlocks.Content {...blockProps} />
    },
 })

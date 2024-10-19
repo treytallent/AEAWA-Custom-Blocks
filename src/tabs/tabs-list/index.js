@@ -10,7 +10,6 @@ const blocktemplate = [["artedwa-blocks/tab"], ["artedwa-blocks/tab"]]
 registerBlockType(metadata.name, {
    edit: () => {
       const blockProps = useBlockProps()
-      console.log(blockProps)
       return (
          <div {...blockProps}>
             <InnerBlocks template={blocktemplate} orientation="vertical" />
