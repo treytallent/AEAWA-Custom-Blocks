@@ -15,6 +15,9 @@
       "title": {
          "type": "string",
          "default": "New Tab"
+      },
+      "icon": {
+         "type": "string"
       }
    },
    "supports": {

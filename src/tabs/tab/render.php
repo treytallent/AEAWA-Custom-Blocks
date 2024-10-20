@@ -1,6 +1,7 @@
 <?php
 
 $id = $attributes["id"];
+$icon = $attributes["icon"];
 $title = $attributes["title"];
 
 $block_wrapper_attributes = get_block_wrapper_attributes(
@@ -14,7 +15,11 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 
 
 echo wp_sprintf(
-    '<button %1$s>%2$s</button>',
+    '<button %1$s>
+    %2$s
+    %3$s
+    </button>',
     $block_wrapper_attributes,
+    $icon,
     $title,
 );
