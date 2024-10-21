@@ -1,10 +1,7 @@
-import {
-   useBlockProps,
-   store as blockEditorStore,
-} from "@wordpress/block-editor"
-import { useDispatch } from "@wordpress/data"
+import { useBlockProps, getBlockRootClientId } from "@wordpress/block-editor"
+import { useDispatch, select } from "@wordpress/data"
 import { createBlock, registerBlockType } from "@wordpress/blocks"
-import { useEffect, useState } from "@wordpress/element"
+import { useEffect } from "@wordpress/element"
 import { DropdownMenu } from "@wordpress/components"
 import {
    academicCapJSX,
@@ -23,12 +20,25 @@ import metadata from "./block.json"
 registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId, isSelected }) => {
       const { title, id } = attributes
-      const [activeIcon, setActiveIcon] = useState()
-      const { insertBlock } = useDispatch(blockEditorStore)
+      const { insertBlock } = useDispatch("core/block-editor")
+
+      const tabsListClientId =
+         select("core/block-editor").getBlockRootClientId(clientId)
+
+      const tabsWrapperClientId =
+         select("core/block-editor").getBlockRootClientId(tabsListClientId)
+
+      const activeId =
+         select("core/block-editor").getBlockAttributes(
+            tabsWrapperClientId
+         ).activeId
+      // console.log("activeId from tab:", activeId)
+
+      let isActive = id === activeId
+
       const indexValue = wp.data
          .select("core/block-editor")
          .getBlockIndex(clientId, ["artedwa-blocks/tab"])
-      const [activeTabIndex, setActiveTabIndex] = useState(0)
 
       useEffect(() => {
          // Sets the attribute Id to it's index value in the parent array
@@ -63,33 +73,16 @@ registerBlockType(metadata.name, {
       }
 
       function updateIcon(jsx, string) {
-         setActiveIcon(jsx)
+         // setActiveIcon(jsx)
          setAttributes({ icon: string })
       }
-
-      const getActiveBlockData = () => {
-         const activeBlock = wp.data.select(blockEditorStore).getSelectedBlock()
-
-         if (activeBlock && activeBlock.name === "artedwa-blocks/tab") {
-            setActiveTabIndex(activeBlock.attributes.id)
-         }
-         return
-      }
-
-      // Later: set this on a higher level component to improve performance
-      wp.data.subscribe(() => {
-         getActiveBlockData()
-      })
 
       const blockProps = useBlockProps()
 
       return (
-         <div
-            {...blockProps}
-            className={activeTabIndex === indexValue ? "is-active" : null}
-         >
+         <div {...blockProps} className={isActive ? "active" : ""}>
             <DropdownMenu
-               icon={activeIcon}
+               // icon={activeIcon}
                label="Select an icon"
                className="tabs-dropdownmenu"
                controls={[

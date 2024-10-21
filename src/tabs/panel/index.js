@@ -5,7 +5,8 @@ import {
    useBlockProps,
    store as blockEditorStore,
 } from "@wordpress/block-editor"
-import { useEffect, useState } from "@wordpress/element"
+import { useDispatch, select } from "@wordpress/data"
+import { useEffect } from "@wordpress/element"
 import "./editor.css"
 import metadata from "./block.json"
 
@@ -14,38 +15,34 @@ const blocktemplate = [
 ]
 
 registerBlockType(metadata.name, {
-   edit: props => {
+   edit: ({ clientId, attributes, setAttributes }) => {
+      const { id } = attributes
+      const panelsListClientId =
+         select("core/block-editor").getBlockRootClientId(clientId)
+
+      const tabsWrapperClientId =
+         select("core/block-editor").getBlockRootClientId(panelsListClientId)
+
+      const activeId =
+         select("core/block-editor").getBlockAttributes(
+            tabsWrapperClientId
+         ).activeId
+
+      let isActive = id === activeId
+
       const indexValue = wp.data
          .select("core/block-editor")
-         .getBlockIndex(props.clientId, ["artedwa-blocks/tab"])
-      const [activeTabIndex, setActiveTabIndex] = useState(0)
+         .getBlockIndex(clientId, ["artedwa-blocks/tab"])
 
       // Sets the attribute id equal to the index value of a panel within it's parent panels-list
       useEffect(() => {
-         if (!props.attributes.id === undefined) return
-         props.setAttributes({ id: indexValue })
-      })
-
-      const getActiveBlockData = () => {
-         const activeBlock = wp.data.select(blockEditorStore).getSelectedBlock()
-
-         if (activeBlock && activeBlock.name === "artedwa-blocks/tab") {
-            setActiveTabIndex(activeBlock.attributes.id)
-         }
-         return
-      }
-
-      // Later: set this on a higher level component to improve performance
-      wp.data.subscribe(() => {
-         getActiveBlockData()
+         if (!attributes.id === undefined) return
+         setAttributes({ id: indexValue })
       })
 
       const blockProps = useBlockProps()
       return (
-         <div
-            {...blockProps}
-            className={activeTabIndex === indexValue ? "is-active" : null}
-         >
+         <div {...blockProps} className={isActive ? "active" : ""}>
             <InnerBlocks template={blocktemplate} orientation="vertical" />
          </div>
       )

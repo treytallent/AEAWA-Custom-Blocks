@@ -2,6 +2,6 @@ div[aria-label="Block: Panel"] {
    display: none;
 }
 
-div[aria-label="Block: Panel"].is-active {
+div[aria-label="Block: Panel"].active {
    display: block;
 }

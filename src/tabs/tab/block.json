@@ -12,9 +12,9 @@
       "id": {
          "type": "number"
       },
-      "activeIndex": {
-         "type": "number",
-         "default": 0
+      "active": {
+         "type": "boolean",
+         "default": false
       },
       "title": {
          "type": "string",

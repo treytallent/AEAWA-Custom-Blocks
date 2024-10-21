@@ -16,7 +16,7 @@ div[aria-label="Select an icon"] button svg {
    fill: none;
 }
 
-div[aria-label="Block: Tab"].is-active {
+div[aria-label="Block: Tab"].active {
    background-color: white;
    border: 2px solid lightgray;
 }

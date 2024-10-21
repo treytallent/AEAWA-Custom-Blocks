@@ -8,7 +8,9 @@ import metadata from "./block.json"
 const blocktemplate = [["artedwa-blocks/tab"], ["artedwa-blocks/tab"]]
 
 registerBlockType(metadata.name, {
-   edit: () => {
+   edit: props => {
+      console.log("tabs list client id:", props.clientId)
+
       const blockProps = useBlockProps()
       return (
          <div {...blockProps}>
