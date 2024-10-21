@@ -1,13 +1,6 @@
-div.tabs-list
+div[aria-label="Block: Tabs List"]
    div.block-editor-inner-blocks
    div.block-editor-block-list__layout {
    display: flex;
    gap: 8px;
-}
-
-div.tabs-list,
-div.block-editor-inner-blocks,
-div.block-editor-block-list__layout {
-   position: relative;
-   z-index: 1;
 }

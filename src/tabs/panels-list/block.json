@@ -9,6 +9,15 @@
    "description": "Panels List Block",
    "example": {},
    "allowedBlocks": ["artedwa-blocks/panel"],
+   "attributes": {
+      "lock": {
+         "type": "object",
+         "default": {
+            "remove": true,
+            "move": true
+         }
+      }
+   },
    "supports": {
       "interactivity": true
    },

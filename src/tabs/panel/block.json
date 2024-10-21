@@ -11,6 +11,17 @@
    "attributes": {
       "id": {
          "type": "number"
+      },
+      "activeIndex": {
+         "type": "number",
+         "default": 0
+      },
+      "lock": {
+         "type": "object",
+         "default": {
+            "remove": true,
+            "move": true
+         }
       }
    },
    "supports": {

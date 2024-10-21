@@ -1,0 +1,26 @@
+.wp-block-artedwa-blocks-tabs-list {
+   display: flex;
+   gap: 1rem;
+   padding: 0;
+}
+
+button.wp-block-artedwa-blocks-tab {
+   font-family: inherit;
+   font-size: 1rem;
+   background-color: unset;
+   display: flex;
+   gap: 4px;
+   align-items: center;
+   border: none;
+   padding: 8px 12px;
+   cursor: pointer;
+}
+
+button.wp-block-artedwa-blocks-tab svg {
+   width: 24px;
+   aspect-ratio: 1/1;
+}
+
+.wp-block-artedwa-blocks-tab.is-active {
+   border-bottom: 2px solid blue;
+}

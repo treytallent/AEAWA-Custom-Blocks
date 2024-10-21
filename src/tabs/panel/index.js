@@ -23,7 +23,6 @@ registerBlockType(metadata.name, {
       // Sets the attribute id equal to the index value of a panel within it's parent panels-list
       useEffect(() => {
          if (!props.attributes.id === undefined) return
-
          props.setAttributes({ id: indexValue })
       })
 

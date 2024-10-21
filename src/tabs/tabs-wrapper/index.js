@@ -15,7 +15,11 @@ registerBlockType(metadata.name, {
       const blockProps = useBlockProps()
       return (
          <section {...blockProps}>
-            <InnerBlocks template={blocktemplate} orientation="vertical" />
+            <InnerBlocks
+               template={blocktemplate}
+               orientation="vertical"
+               renderAppender={false}
+            />
          </section>
       )
    },

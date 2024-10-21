@@ -12,12 +12,23 @@
       "id": {
          "type": "number"
       },
+      "activeIndex": {
+         "type": "number",
+         "default": 0
+      },
       "title": {
          "type": "string",
          "default": "New Tab"
       },
       "icon": {
          "type": "string"
+      },
+      "lock": {
+         "type": "object",
+         "default": {
+            "remove": true,
+            "move": true
+         }
       }
    },
    "supports": {

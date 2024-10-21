@@ -12,6 +12,13 @@
    "supports": {
       "interactivity": true
    },
+   "attributes": {
+      "lock": {
+         "type": "boolean",
+         "remove": true,
+         "move": true
+      }
+   },
    "textdomain": "artedwa",
    "editorScript": "file:./index.js",
    "editorStyle": "file:./index.css",
