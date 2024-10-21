@@ -20,8 +20,6 @@ registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId }) => {
       const { activeId } = attributes
 
-      console.log("tabs wrapper client id:", clientId)
-
       const activeBlock = useSelect(
          select => select("core/block-editor").getSelectedBlock(),
          []

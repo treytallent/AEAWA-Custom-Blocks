@@ -1,11 +1,7 @@
 import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
-import {
-   InnerBlocks,
-   useBlockProps,
-   store as blockEditorStore,
-} from "@wordpress/block-editor"
-import { useDispatch, select } from "@wordpress/data"
+import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
+import { select } from "@wordpress/data"
 import { useEffect } from "@wordpress/element"
 import "./editor.css"
 import metadata from "./block.json"
@@ -17,6 +13,7 @@ const blocktemplate = [
 registerBlockType(metadata.name, {
    edit: ({ clientId, attributes, setAttributes }) => {
       const { id } = attributes
+
       const panelsListClientId =
          select("core/block-editor").getBlockRootClientId(clientId)
 

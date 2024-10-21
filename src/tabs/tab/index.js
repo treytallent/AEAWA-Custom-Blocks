@@ -1,4 +1,4 @@
-import { useBlockProps, getBlockRootClientId } from "@wordpress/block-editor"
+import { useBlockProps } from "@wordpress/block-editor"
 import { useDispatch, select } from "@wordpress/data"
 import { createBlock, registerBlockType } from "@wordpress/blocks"
 import { useEffect } from "@wordpress/element"
@@ -19,7 +19,7 @@ import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId, isSelected }) => {
-      const { title, id } = attributes
+      const { title, id, icon } = attributes
       const { insertBlock } = useDispatch("core/block-editor")
 
       const tabsListClientId =
@@ -32,7 +32,6 @@ registerBlockType(metadata.name, {
          select("core/block-editor").getBlockAttributes(
             tabsWrapperClientId
          ).activeId
-      // console.log("activeId from tab:", activeId)
 
       let isActive = id === activeId
 
@@ -46,7 +45,7 @@ registerBlockType(metadata.name, {
          setId()
 
          // Sets the icon for new tabs
-         if (!attributes.icon === undefined) return
+         if (!icon === undefined) return
          updateIcon(informationCircleJSX, informationCircleString)
 
          // Places a new tab panel when a new tab is inserted
@@ -73,7 +72,6 @@ registerBlockType(metadata.name, {
       }
 
       function updateIcon(jsx, string) {
-         // setActiveIcon(jsx)
          setAttributes({ icon: string })
       }
 
@@ -82,7 +80,7 @@ registerBlockType(metadata.name, {
       return (
          <div {...blockProps} className={isActive ? "active" : ""}>
             <DropdownMenu
-               // icon={activeIcon}
+               icon={informationCircleJSX}
                label="Select an icon"
                className="tabs-dropdownmenu"
                controls={[
@@ -107,24 +105,18 @@ registerBlockType(metadata.name, {
             {isSelected ? (
                <input
                   {...blockProps}
-                  value={attributes.title}
-                  onChange={e =>
-                     setAttributes((attributes.title = e.target.value))
-                  }
+                  value={title}
+                  onChange={e => setAttributes((title = e.target.value))}
                ></input>
             ) : (
-               <h4>{attributes.title}</h4>
+               <h4>{title}</h4>
             )}
          </div>
       )
    },
-   save: props => {
+   save: ({ attributes }) => {
+      const { icon } = attributes
       const blockProps = useBlockProps.save()
-      return (
-         <button {...blockProps}>
-            {props.attributes.icon}
-            Button
-         </button>
-      )
+      return <button {...blockProps}>{icon}Button</button>
    },
 })
