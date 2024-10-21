@@ -1,13 +1,17 @@
-.tab-wrapper-edit-container {
-   position: relative;
-   z-index: 1;
+div[aria-label="Block: Tab"] {
+   width: 200px;
+   display: flex;
+   align-items: center;
+   padding: 8px 16px;
+   background-color: lightgrey;
 }
 
-.tab-wrapper-edit-container div {
-   display: flex;
+input[aria-label="Block: Tab"] {
+   width: 100%;
+   border: 1px solid blue;
+   padding: 4px 8px;
 }
 
-.wp-block-artedwa-blocks-tab-header {
-   display: flex;
-   flex-direction: column;
+div[aria-label="Block: Tab"] h4 {
+   font-weight: 400;
 }

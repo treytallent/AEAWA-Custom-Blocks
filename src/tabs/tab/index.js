@@ -21,22 +21,22 @@ import "./editor.css"
 import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
-   edit: ({ attributes, setAttributes, clientId }) => {
+   edit: ({ attributes, setAttributes, clientId, isSelected }) => {
       const { title, id } = attributes
       const [activeIcon, setActiveIcon] = useState()
       const { insertBlock } = useDispatch(blockEditorStore)
-
       const indexValue = wp.data
          .select("core/block-editor")
          .getBlockIndex(clientId, ["artedwa-blocks/tab"])
+      const [activeTabIndex, setActiveTabIndex] = useState(0)
 
       useEffect(() => {
          // Sets the attribute Id to it's index value in the parent array
          if (!id === undefined) return
          setId()
 
+         // Sets the icon for new tabs
          if (!attributes.icon === undefined) return
-         console.log("update icon")
          updateIcon(informationCircleJSX, informationCircleString)
 
          // Places a new tab panel when a new tab is inserted
@@ -67,13 +67,31 @@ registerBlockType(metadata.name, {
          setAttributes({ icon: string })
       }
 
+      const getActiveBlockData = () => {
+         const activeBlock = wp.data.select(blockEditorStore).getSelectedBlock()
+
+         if (activeBlock && activeBlock.name === "artedwa-blocks/tab") {
+            setActiveTabIndex(activeBlock.attributes.id)
+         }
+         return
+      }
+
+      // Later: set this on a higher level component to improve performance
+      wp.data.subscribe(() => {
+         getActiveBlockData()
+      })
+
       const blockProps = useBlockProps()
 
       return (
-         <div {...blockProps}>
+         <div
+            {...blockProps}
+            className={activeTabIndex === indexValue ? "is-active" : null}
+         >
             <DropdownMenu
                icon={activeIcon}
                label="Select an icon"
+               className="tabs-dropdownmenu"
                controls={[
                   {
                      title: "Academic Cap",
@@ -93,13 +111,17 @@ registerBlockType(metadata.name, {
                   },
                ]}
             />
-            <input
-               {...blockProps}
-               value={attributes.title}
-               onChange={e =>
-                  setAttributes((attributes.title = e.target.value))
-               }
-            ></input>
+            {isSelected ? (
+               <input
+                  {...blockProps}
+                  value={attributes.title}
+                  onChange={e =>
+                     setAttributes((attributes.title = e.target.value))
+                  }
+               ></input>
+            ) : (
+               <h4>{attributes.title}</h4>
+            )}
          </div>
       )
    },

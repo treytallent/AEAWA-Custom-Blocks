@@ -9,3 +9,14 @@
    background: none;
    border: none;
 }
+
+/* Overrides default style options that fill the icon select menu */
+.tabs-dropdownmenu button svg,
+div[aria-label="Select an icon"] button svg {
+   fill: none;
+}
+
+div[aria-label="Block: Tab"].is-active {
+   background-color: white;
+   border: 2px solid lightgray;
+}

@@ -11,7 +11,7 @@ registerBlockType(metadata.name, {
    edit: () => {
       const blockProps = useBlockProps()
       return (
-         <div {...blockProps}>
+         <div {...blockProps} className="tabs-list">
             <InnerBlocks template={blocktemplate} orientation="vertical" />
          </div>
       )
