@@ -106,7 +106,7 @@ registerBlockType(metadata.name, {
                <input
                   {...blockProps}
                   value={title}
-                  onChange={e => setAttributes((title = e.target.value))}
+                  onChange={e => setAttributes({ title: e.target.value })}
                ></input>
             ) : (
                <h4>{title}</h4>
