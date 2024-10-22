@@ -32,6 +32,7 @@ function artedwa_blocks_artedwa_block_init()
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/tab');
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/panels-list');
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/panel');
+	register_block_type_from_metadata(__DIR__ . '/build/event-card');
 	register_block_type_from_metadata(__DIR__ . '/build/sample-block');
 }
 

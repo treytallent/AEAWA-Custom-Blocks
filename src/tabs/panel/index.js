@@ -12,7 +12,7 @@ const blocktemplate = [
 
 registerBlockType(metadata.name, {
    edit: ({ clientId, attributes, setAttributes }) => {
-      const { id } = attributes
+      const { id, category } = attributes
 
       const panelsListClientId =
          select("core/block-editor").getBlockRootClientId(clientId)
@@ -27,19 +27,41 @@ registerBlockType(metadata.name, {
 
       let isActive = id === activeId
 
-      const indexValue = wp.data
-         .select("core/block-editor")
-         .getBlockIndex(clientId, ["artedwa-blocks/tab"])
+      function setCategory() {
+         // Get the client IDs of the tabs-list and panels-list blocks
+         const tabsWrapperBlocks =
+            select("core/block-editor").getBlocks(tabsWrapperClientId)
+         const tabsListClientId = tabsWrapperBlocks[0].clientId
+
+         // Get the children blocks of tabs-list and panels-list
+         const tabsListChildren =
+            select("core/block-editor").getBlocks(tabsListClientId)
+         const panelsListChildren =
+            select("core/block-editor").getBlocks(panelsListClientId)
+
+         // Find the corresponding tab for each panel
+         const matchingTab = tabsListChildren.find(
+            tab => tab.attributes.id === id
+         )
+         setAttributes({ category: matchingTab.attributes.title })
+      }
 
       // Sets the attribute id equal to the index value of a panel within it's parent panels-list
       useEffect(() => {
-         if (!attributes.id === undefined) return
+         if (!id === undefined) return
+         const indexValue = wp.data
+            .select("core/block-editor")
+            .getBlockIndex(clientId, ["artedwa-blocks/tab"])
          setAttributes({ id: indexValue })
-      })
+
+         if (!category === undefined) return
+         setCategory()
+      }, [clientId])
 
       const blockProps = useBlockProps()
       return (
          <div {...blockProps} className={isActive ? "active" : ""}>
+            <p>{category}</p>
             <InnerBlocks template={blocktemplate} orientation="vertical" />
          </div>
       )

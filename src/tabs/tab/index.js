@@ -22,27 +22,15 @@ registerBlockType(metadata.name, {
       const { title, id, icon } = attributes
       const { insertBlock } = useDispatch("core/block-editor")
 
-      const tabsListClientId =
-         select("core/block-editor").getBlockRootClientId(clientId)
-
-      const tabsWrapperClientId =
-         select("core/block-editor").getBlockRootClientId(tabsListClientId)
-
-      const activeId =
-         select("core/block-editor").getBlockAttributes(
-            tabsWrapperClientId
-         ).activeId
-
       let isActive = id === activeId
-
-      const indexValue = wp.data
-         .select("core/block-editor")
-         .getBlockIndex(clientId, ["artedwa-blocks/tab"])
 
       useEffect(() => {
          // Sets the attribute Id to it's index value in the parent array
          if (!id === undefined) return
-         setId()
+         const indexValue = wp.data
+            .select("core/block-editor")
+            .getBlockIndex(clientId, ["artedwa-blocks/tab"])
+         setAttributes({ id: indexValue })
 
          // Sets the icon for new tabs
          if (!icon === undefined) return
@@ -53,10 +41,10 @@ registerBlockType(metadata.name, {
             .select("core/block-editor")
             .wasBlockJustInserted(clientId)
          if (!justInserted) return
-         addTabPanel()
+         addTabPanel(indexValue)
       }, [clientId])
 
-      function addTabPanel() {
+      function addTabPanel(indexValue) {
          const panelsListClientId = wp.data
             .select("core/block-editor")
             .getBlocksByName("artedwa-blocks/panels-list")
@@ -65,10 +53,6 @@ registerBlockType(metadata.name, {
             id: indexValue,
          })
          insertBlock(newPane, indexValue, panelsListClientId[0])
-      }
-
-      function setId() {
-         setAttributes({ id: indexValue })
       }
 
       function updateIcon(jsx, string) {
