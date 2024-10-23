@@ -63,9 +63,11 @@ registerBlockType(metadata.name, {
          setAttributes({ id: indexValue })
       }, [clientId])
 
-      const blockProps = useBlockProps()
+      const blockProps = useBlockProps({
+         className: isActive ? "active" : "",
+      })
       return (
-         <div {...blockProps} className={isActive ? "active" : ""}>
+         <div {...blockProps}>
             <InnerBlocks template={blocktemplate} orientation="vertical" />
          </div>
       )

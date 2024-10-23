@@ -20,7 +20,7 @@ import { renderToString } from "react-dom/server"
 
 registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId }) => {
-      const { title, id, icon, selectedCategory } = attributes
+      const { title, id, icon, isActive, selectedCategory } = attributes
       const { insertBlock } = useDispatch("core/block-editor")
 
       // Triggers a re-render when a new activeId value is set
@@ -105,7 +105,9 @@ registerBlockType(metadata.name, {
          )
       }
 
-      const blockProps = useBlockProps()
+      const blockProps = useBlockProps({
+         className: isActive ? "active" : "",
+      })
       return (
          <>
             <InspectorControls>
@@ -129,6 +131,7 @@ registerBlockType(metadata.name, {
                   />
                   <DropdownMenu
                      icon={convertStringToIcon(icon)}
+                     text="Select an Icon"
                      label="Select an Icon"
                      className="tabs-dropdownmenu"
                      controls={[

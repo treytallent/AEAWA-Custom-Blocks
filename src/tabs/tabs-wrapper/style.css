@@ -21,6 +21,26 @@ button.wp-block-artedwa-blocks-tab svg {
    aspect-ratio: 1/1;
 }
 
-.wp-block-artedwa-blocks-tab.is-active {
-   border-bottom: 2px solid blue;
+h4 {
+   font-weight: 400;
+}
+
+.wp-block-artedwa-blocks-tab {
+   position: relative;
+}
+
+.wp-block-artedwa-blocks-tab * {
+   position: relative;
+   z-index: 10;
+}
+
+.wp-block-artedwa-blocks-tab.active::after {
+   content: url("http://localhost:10053/wp-content/themes/artedwa-2024/assets/svg/stroke-yellow-light.svg") !important;
+   position: absolute;
+   top: 5%;
+   left: 0;
+   width: 105%;
+   height: 100%;
+   z-index: 0 !important;
+   transform: translateX(-1px);
 }

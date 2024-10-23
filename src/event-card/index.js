@@ -17,7 +17,7 @@ registerBlockType(metadata.name, {
 
       function setCategory() {
          const parentPanel = getParentPanel()
-         setAttributes({ category: parentPanel.attributes.category })
+         setAttributes({ category: parentPanel.attributes.selectedCategory })
       }
 
       // Loops through parents until it returns a parent component of panel
@@ -31,11 +31,12 @@ registerBlockType(metadata.name, {
 
       useEffect(() => {
          if (!category === null) return
-         // setCategory()
+         setCategory()
       }, [clientId])
 
       return (
          <div {...blockProps}>
+            <p>{category}</p>
             <img></img>
             <h4>Event Title</h4>
             <div>
