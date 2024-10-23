@@ -13,6 +13,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
     )
 );
 
+var_dump($icon);
 
 echo wp_sprintf(
     '<button %1$s>

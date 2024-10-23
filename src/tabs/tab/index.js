@@ -4,6 +4,7 @@ import { createBlock, registerBlockType } from "@wordpress/blocks"
 import {
    DropdownMenu,
    CheckboxControl,
+   CircularOptionPicker,
    RadioControl,
    TextControl,
    ToggleControl,
@@ -11,23 +12,15 @@ import {
    PanelBody,
 } from "@wordpress/components"
 import { useEffect } from "@wordpress/element"
-import {
-   academicCapJSX,
-   academicCapString,
-   pencilJSX,
-   pencilString,
-   paintBrushJSX,
-   paintBrushString,
-   informationCircleJSX,
-   informationCircleString,
-} from "./icons"
+import { academicCap, pencil, paintBrush, informationCircle } from "./icons"
 import "./style.css"
 import "./editor.css"
 import metadata from "./block.json"
+import { renderToString } from "react-dom/server"
 
 registerBlockType(metadata.name, {
-   edit: ({ attributes, setAttributes, clientId, isSelected }) => {
-      const { title, id, icon, isActive, selectedCategory } = attributes
+   edit: ({ attributes, setAttributes, clientId }) => {
+      const { title, id, icon, selectedCategory } = attributes
       const { insertBlock } = useDispatch("core/block-editor")
 
       // Triggers a re-render when a new activeId value is set
@@ -64,7 +57,7 @@ registerBlockType(metadata.name, {
 
          // Sets the icon for new tabs
          if (!icon === undefined) return
-         updateIcon(informationCircleJSX, informationCircleString)
+         onChangeIcon(informationCircle)
 
          // Places a new tab panel when a new tab is inserted
          const justInserted = wp.data
@@ -85,12 +78,31 @@ registerBlockType(metadata.name, {
          insertBlock(newPane, indexValue, panelsListClientId[0])
       }
 
-      function updateIcon(jsx, string) {
-         setAttributes({ icon: string })
-      }
-
       function onChangeCategory(newSelectedCategory) {
          setAttributes({ selectedCategory: newSelectedCategory })
+      }
+
+      function onChangeTitle(newTitle) {
+         setAttributes({ title: newTitle })
+      }
+
+      // When selecting a new icon, it is converted to a string and set as the icon attribute
+      function onChangeIcon(newIcon) {
+         setAttributes({ icon: convertIconToString(newIcon) })
+      }
+
+      const convertIconToString = icon => {
+         return renderToString(icon)
+      }
+
+      // Converts stringified icons back to HTML for rendering
+      const convertStringToIcon = iconString => {
+         return (
+            <div
+               className="icon-container"
+               dangerouslySetInnerHTML={{ __html: iconString }}
+            />
+         )
       }
 
       const blockProps = useBlockProps()
@@ -110,49 +122,49 @@ registerBlockType(metadata.name, {
                      }
                      onChange={onChangeCategory}
                   />
+                  <TextControl
+                     label="Enter a Tab Name"
+                     value={title || ""}
+                     onChange={onChangeTitle}
+                  />
+                  <DropdownMenu
+                     icon={convertStringToIcon(icon)}
+                     label="Select an Icon"
+                     className="tabs-dropdownmenu"
+                     controls={[
+                        {
+                           title: "Academic Cap",
+                           icon: academicCap,
+                           onClick: () => onChangeIcon(academicCap),
+                        },
+                        {
+                           title: "Pencil",
+                           icon: pencil,
+                           onClick: () => onChangeIcon(pencil),
+                        },
+                        {
+                           title: "Paint Brush",
+                           icon: paintBrush,
+                           onClick: () => onChangeIcon(paintBrush),
+                        },
+                        {
+                           title: "Information Circle",
+                           icon: informationCircle,
+                           onClick: () => onChangeIcon(informationCircle),
+                        },
+                     ]}
+                  />
                </PanelBody>
             </InspectorControls>
-            <div {...blockProps} className={isActive ? "active" : ""}>
-               <DropdownMenu
-                  icon={informationCircleJSX}
-                  label="Select an icon"
-                  className="tabs-dropdownmenu"
-                  controls={[
-                     {
-                        title: "Academic Cap",
-                        icon: academicCapJSX,
-                        onClick: () =>
-                           updateIcon(academicCapJSX, academicCapString),
-                     },
-                     {
-                        title: "Pencil",
-                        icon: pencilJSX,
-                        onClick: () => updateIcon(pencilJSX, pencilString),
-                     },
-                     {
-                        title: "Paint Brush",
-                        icon: paintBrushJSX,
-                        onClick: () =>
-                           updateIcon(paintBrushJSX, paintBrushString),
-                     },
-                  ]}
-               />
-               {isSelected ? (
-                  <input
-                     {...blockProps}
-                     value={title}
-                     onChange={e => setAttributes({ title: e.target.value })}
-                  ></input>
-               ) : (
-                  <h4>{title}</h4>
-               )}
+            <div {...blockProps}>
+               {convertStringToIcon(icon)}
+               <h4>{title}</h4>
             </div>
          </>
       )
    },
-   save: ({ attributes }) => {
-      const { icon } = attributes
+   save: () => {
       const blockProps = useBlockProps.save()
-      return <button {...blockProps}>{icon}Button</button>
+      return <div {...blockProps}></div>
    },
 })
