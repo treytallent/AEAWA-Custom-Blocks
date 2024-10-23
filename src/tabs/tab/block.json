@@ -16,6 +16,9 @@
          "type": "boolean",
          "default": false
       },
+      "selectedCategory": {
+         "type": "string"
+      },
       "title": {
          "type": "string",
          "default": "New Tab"

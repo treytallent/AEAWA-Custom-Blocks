@@ -12,16 +12,36 @@ const blocktemplate = [
 
 registerBlockType(metadata.name, {
    edit: ({ clientId, attributes, setAttributes }) => {
-      const { id, category, isActive } = attributes
+      const { id, selectedCategory, isActive } = attributes
 
       // Triggers a re-render when a new activeId value is set
       // Returns the attribute activeId from the parent tabs-wrapper
-      const activeTabId = useSelect(select => {
+      const { activeTabId, category } = useSelect(select => {
          const parentBlockId =
             select("core/block-editor").getBlockHierarchyRootClientId(clientId)
-         return select("core/block-editor").getBlockAttributes(parentBlockId)
-            .activeId
+         const parentAttr =
+            select("core/block-editor").getBlockAttributes(parentBlockId)
+         const tabsWrapperBlocks =
+            select("core/block-editor").getBlocks(parentBlockId)
+         const tabsListClientId = tabsWrapperBlocks[0].clientId
+         // Get the children blocks of tabs-list and panels-list
+         const tabsListChildren =
+            select("core/block-editor").getBlocks(tabsListClientId)
+
+         // Find the corresponding tab for each panel
+         const matchingTab = tabsListChildren.find(
+            tab => tab.attributes.id === id
+         )
+         const category = matchingTab && matchingTab.attributes.selectedCategory
+         return {
+            activeTabId: parentAttr.activeId,
+            category: category,
+         }
       }, [])
+
+      useEffect(() => {
+         setAttributes({ selectedCategory: category })
+      }, [category])
 
       // Sets the isActive attribute to either true or false each time the value of activeTabId changes
       useEffect(() => {
@@ -41,35 +61,11 @@ registerBlockType(metadata.name, {
             .select("core/block-editor")
             .getBlockIndex(clientId, ["artedwa-blocks/tab"])
          setAttributes({ id: indexValue })
-
-         // Sets the attribute category equal to the category attribute in it's corresponding tab
-         if (!category === undefined) return
-         // setCategory()
       }, [clientId])
-
-      function setCategory() {
-         const parentBlockId =
-            select("core/block-editor").getBlockHierarchyRootClientId(clientId)
-         // Get the client IDs of the tabs-list and panels-list blocks
-         const tabsWrapperBlocks =
-            select("core/block-editor").getBlocks(parentBlockId)
-         const tabsListClientId = tabsWrapperBlocks[0].clientId
-
-         // Get the children blocks of tabs-list and panels-list
-         const tabsListChildren =
-            select("core/block-editor").getBlocks(tabsListClientId)
-
-         // Find the corresponding tab for each panel
-         const matchingTab = tabsListChildren.find(
-            tab => tab.attributes.id === id
-         )
-         setAttributes({ category: matchingTab.attributes.title })
-      }
 
       const blockProps = useBlockProps()
       return (
          <div {...blockProps} className={isActive ? "active" : ""}>
-            <p>{category}</p>
             <InnerBlocks template={blocktemplate} orientation="vertical" />
          </div>
       )

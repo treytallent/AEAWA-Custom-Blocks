@@ -13,14 +13,23 @@
       "interactivity": true
    },
    "attributes": {
+      "activeId": {
+         "type": "number",
+         "default": 0
+      },
+      "taxonomies": {
+         "type": "array"
+      },
+      "selectedTaxonomy": {
+         "type": "string"
+      },
+      "selectedTaxonomyCategories": {
+         "type": "array"
+      },
       "lock": {
          "type": "boolean",
          "remove": true,
          "move": true
-      },
-      "activeId": {
-         "type": "number",
-         "default": 0
       }
    },
    "textdomain": "artedwa",

@@ -1,8 +1,16 @@
-import { useBlockProps } from "@wordpress/block-editor"
+import { useBlockProps, InspectorControls } from "@wordpress/block-editor"
 import { useDispatch, useSelect } from "@wordpress/data"
 import { createBlock, registerBlockType } from "@wordpress/blocks"
+import {
+   DropdownMenu,
+   CheckboxControl,
+   RadioControl,
+   TextControl,
+   ToggleControl,
+   SelectControl,
+   PanelBody,
+} from "@wordpress/components"
 import { useEffect } from "@wordpress/element"
-import { DropdownMenu } from "@wordpress/components"
 import {
    academicCapJSX,
    academicCapString,
@@ -19,16 +27,20 @@ import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId, isSelected }) => {
-      const { title, id, icon, isActive } = attributes
+      const { title, id, icon, isActive, selectedCategory } = attributes
       const { insertBlock } = useDispatch("core/block-editor")
 
       // Triggers a re-render when a new activeId value is set
       // Returns the attribute activeId from the parent tabs-wrapper
-      const activeTabId = useSelect(select => {
+      const { activeTabId, categories } = useSelect(select => {
          const parentBlockId =
             select("core/block-editor").getBlockHierarchyRootClientId(clientId)
-         return select("core/block-editor").getBlockAttributes(parentBlockId)
-            .activeId
+         const attr =
+            select("core/block-editor").getBlockAttributes(parentBlockId)
+         return {
+            activeTabId: attr.activeId,
+            categories: attr.selectedTaxonomyCategories,
+         }
       }, [])
 
       // Sets the isActive attribute to either true or false each time the value of activeTabId changes
@@ -77,42 +89,65 @@ registerBlockType(metadata.name, {
          setAttributes({ icon: string })
       }
 
+      function onChangeCategory(newSelectedCategory) {
+         setAttributes({ selectedCategory: newSelectedCategory })
+      }
+
       const blockProps = useBlockProps()
       return (
-         <div {...blockProps} className={isActive ? "active" : ""}>
-            <DropdownMenu
-               icon={informationCircleJSX}
-               label="Select an icon"
-               className="tabs-dropdownmenu"
-               controls={[
-                  {
-                     title: "Academic Cap",
-                     icon: academicCapJSX,
-                     onClick: () =>
-                        updateIcon(academicCapJSX, academicCapString),
-                  },
-                  {
-                     title: "Pencil",
-                     icon: pencilJSX,
-                     onClick: () => updateIcon(pencilJSX, pencilString),
-                  },
-                  {
-                     title: "Paint Brush",
-                     icon: paintBrushJSX,
-                     onClick: () => updateIcon(paintBrushJSX, paintBrushString),
-                  },
-               ]}
-            />
-            {isSelected ? (
-               <input
-                  {...blockProps}
-                  value={title}
-                  onChange={e => setAttributes({ title: e.target.value })}
-               ></input>
-            ) : (
-               <h4>{title}</h4>
-            )}
-         </div>
+         <>
+            <InspectorControls>
+               <PanelBody title="Tab Options">
+                  <SelectControl
+                     label="Select Category"
+                     value={selectedCategory || ""}
+                     options={
+                        categories &&
+                        categories.map(t => ({
+                           label: t.name,
+                           value: t.slug,
+                        }))
+                     }
+                     onChange={onChangeCategory}
+                  />
+               </PanelBody>
+            </InspectorControls>
+            <div {...blockProps} className={isActive ? "active" : ""}>
+               <DropdownMenu
+                  icon={informationCircleJSX}
+                  label="Select an icon"
+                  className="tabs-dropdownmenu"
+                  controls={[
+                     {
+                        title: "Academic Cap",
+                        icon: academicCapJSX,
+                        onClick: () =>
+                           updateIcon(academicCapJSX, academicCapString),
+                     },
+                     {
+                        title: "Pencil",
+                        icon: pencilJSX,
+                        onClick: () => updateIcon(pencilJSX, pencilString),
+                     },
+                     {
+                        title: "Paint Brush",
+                        icon: paintBrushJSX,
+                        onClick: () =>
+                           updateIcon(paintBrushJSX, paintBrushString),
+                     },
+                  ]}
+               />
+               {isSelected ? (
+                  <input
+                     {...blockProps}
+                     value={title}
+                     onChange={e => setAttributes({ title: e.target.value })}
+                  ></input>
+               ) : (
+                  <h4>{title}</h4>
+               )}
+            </div>
+         </>
       )
    },
    save: ({ attributes }) => {

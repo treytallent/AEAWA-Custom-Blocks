@@ -16,7 +16,7 @@
          "type": "boolean",
          "default": false
       },
-      "category": {
+      "selectedCategory": {
          "type": "string"
       },
       "active": {
