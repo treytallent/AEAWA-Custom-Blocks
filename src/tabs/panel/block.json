@@ -12,6 +12,10 @@
       "id": {
          "type": "number"
       },
+      "isActive": {
+         "type": "boolean",
+         "default": false
+      },
       "category": {
          "type": "string"
       },

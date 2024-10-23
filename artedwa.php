@@ -33,10 +33,20 @@ function artedwa_blocks_artedwa_block_init()
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/panels-list');
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/panel');
 	register_block_type_from_metadata(__DIR__ . '/build/event-card');
-	register_block_type_from_metadata(__DIR__ . '/build/sample-block');
 }
 
 add_action('init', 'artedwa_blocks_artedwa_block_init');
+
+function enqueue_custom_store_script()
+{
+	wp_enqueue_script(
+		'custom-store', // Handle for the script
+		get_template_directory_uri() . '/src/sample-block/sample-store.js', // Path to the script
+		array('wp-data'),
+	);
+}
+
+// add_action('wp_enqueue_scripts', 'enqueue_custom_store_script');
 
 // Allow SVG
 add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mimes) {

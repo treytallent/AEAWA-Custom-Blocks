@@ -1,5 +1,5 @@
 import { useBlockProps } from "@wordpress/block-editor"
-import { useDispatch, select } from "@wordpress/data"
+import { useDispatch, useSelect } from "@wordpress/data"
 import { createBlock, registerBlockType } from "@wordpress/blocks"
 import { useEffect } from "@wordpress/element"
 import { DropdownMenu } from "@wordpress/components"
@@ -19,13 +19,31 @@ import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId, isSelected }) => {
-      const { title, id, icon } = attributes
+      const { title, id, icon, isActive } = attributes
       const { insertBlock } = useDispatch("core/block-editor")
 
-      let isActive = id === activeId
+      // Triggers a re-render when a new activeId value is set
+      // Returns the attribute activeId from the parent tabs-wrapper
+      const activeTabId = useSelect(select => {
+         const parentBlockId =
+            select("core/block-editor").getBlockHierarchyRootClientId(clientId)
+         return select("core/block-editor").getBlockAttributes(parentBlockId)
+            .activeId
+      }, [])
 
+      // Sets the isActive attribute to either true or false each time the value of activeTabId changes
       useEffect(() => {
-         // Sets the attribute Id to it's index value in the parent array
+         if (activeTabId !== null && activeTabId === id) {
+            setAttributes({ isActive: true })
+         } else if (activeTabId !== null && activeTabId !== id) {
+            setAttributes({ isActive: false })
+         }
+         return
+      }, [activeTabId])
+
+      // Only runs on the first mount
+      useEffect(() => {
+         // Sets the attribute id to it's index value in the parent array
          if (!id === undefined) return
          const indexValue = wp.data
             .select("core/block-editor")
@@ -60,7 +78,6 @@ registerBlockType(metadata.name, {
       }
 
       const blockProps = useBlockProps()
-
       return (
          <div {...blockProps} className={isActive ? "active" : ""}>
             <DropdownMenu

@@ -9,6 +9,7 @@ const blocktemplate = [["artedwa-blocks/panel"], ["artedwa-blocks/panel"]]
 
 registerBlockType(metadata.name, {
    edit: () => {
+      // console.log("rendering panels list")
       const blockProps = useBlockProps()
       return (
          <div {...blockProps}>

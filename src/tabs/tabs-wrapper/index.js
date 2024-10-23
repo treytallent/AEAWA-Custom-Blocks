@@ -1,12 +1,8 @@
 import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
-import {
-   InnerBlocks,
-   useBlockProps,
-   store as blockEditorStore,
-} from "@wordpress/block-editor"
-import { select, useSelect } from "@wordpress/data"
-import { useCallback, useEffect } from "@wordpress/element"
+import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
+import { useSelect } from "@wordpress/data"
+import { useEffect } from "@wordpress/element"
 import "./style.css"
 import "./editor.css"
 import metadata from "./block.json"
@@ -17,21 +13,26 @@ const blocktemplate = [
 ]
 
 registerBlockType(metadata.name, {
-   edit: ({ attributes, setAttributes, clientId }) => {
+   edit: ({ attributes, setAttributes }) => {
       const { activeId } = attributes
+      // console.log("rendering tabs wrapper")
 
-      const activeBlock = useSelect(
-         select => select("core/block-editor").getSelectedBlock(),
-         []
-      )
+      // Triggers a re-render when a tab block is selected
+      // Returns the selected tab block
+      const newActiveId = useSelect(select => {
+         const block = select("core/block-editor").getSelectedBlock()
+         if (block && block.name === "artedwa-blocks/tab") {
+            return block.attributes.id
+         }
+         return null
+      }, [])
 
+      // When the newActiveId value changes the attribute of activeId is updated
       useEffect(() => {
-         if (!activeBlock) return
-         if (activeBlock.name !== "artedwa-blocks/tab") return
-         const activeTabId = activeBlock.attributes.id
-         if (activeTabId === activeId) return
-         setAttributes({ activeId: activeTabId })
-      }, [activeBlock, activeId, setAttributes])
+         if (newActiveId !== null && newActiveId !== activeId) {
+            setAttributes({ activeId: newActiveId })
+         }
+      }, [newActiveId])
 
       const blockProps = useBlockProps()
       return (

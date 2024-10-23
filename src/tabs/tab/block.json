@@ -12,7 +12,7 @@
       "id": {
          "type": "number"
       },
-      "active": {
+      "isActive": {
          "type": "boolean",
          "default": false
       },
