@@ -19,7 +19,7 @@
    },
    "textdomain": "artedwa",
    "editorScript": "file:./index.js",
-   "editorStyle": "file:./index.css",
+   "editorStyle": "file:./editor.css",
    "style": "file:./style-index.css",
    "render": "file:./render.php"
 }

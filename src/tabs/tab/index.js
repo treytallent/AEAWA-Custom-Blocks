@@ -1,5 +1,5 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor"
-import { useDispatch, useSelect } from "@wordpress/data"
+import { select, useDispatch, useSelect } from "@wordpress/data"
 import { createBlock, registerBlockType } from "@wordpress/blocks"
 import {
    DropdownMenu,

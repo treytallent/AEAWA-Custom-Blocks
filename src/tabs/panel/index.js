@@ -14,7 +14,7 @@ registerBlockType(metadata.name, {
    edit: ({ clientId, attributes, setAttributes }) => {
       const { id, selectedCategory, isActive } = attributes
 
-      // Triggers a re-render when a new activeId value is set
+      // Triggers a re-render when a new activeId or category value is set
       // Returns the attribute activeId from the parent tabs-wrapper
       const { activeTabId, category } = useSelect(select => {
          const parentBlockId =
@@ -27,15 +27,13 @@ registerBlockType(metadata.name, {
          // Get the children blocks of tabs-list and panels-list
          const tabsListChildren =
             select("core/block-editor").getBlocks(tabsListClientId)
-
          // Find the corresponding tab for each panel
          const matchingTab = tabsListChildren.find(
             tab => tab.attributes.id === id
          )
-         const category = matchingTab && matchingTab.attributes.selectedCategory
          return {
             activeTabId: parentAttr.activeId,
-            category: category,
+            category: matchingTab.attributes.selectedCategory,
          }
       }, [])
 

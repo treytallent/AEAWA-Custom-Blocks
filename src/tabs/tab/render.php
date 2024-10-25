@@ -12,13 +12,9 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
         'data-wp-on--click' => "actions.setActive"
     )
 );
+?>
 
-echo wp_sprintf(
-    '<button %1$s>
-    %2$s
-    <h4>%3$s</h4>
-    </button>',
-    $block_wrapper_attributes,
-    $icon,
-    $title,
-);
+<button <?php echo ($block_wrapper_attributes) ?>>
+    <?php echo ($icon) ?>
+    <h3><?php echo ($title) ?></h3>
+</button>

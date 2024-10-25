@@ -16,27 +16,24 @@ if (is_array($category) && !empty($category)) {
     $category = $category[0]->name;
 }
 
-_e($category);
-_e($parent_category);
+// Does not render the card if it's corresponding post type's category does not match the category of the panel it's placed inside of 
+if ($category !== $parent_category) return
+?>
 
-if ($category === $parent_category) {
-    echo wp_sprintf(
-        '<div %1$s>
-            <img src="%2$s"></img>
-            <h4>%3$s</h4>
-            <div>
-                <p>%4$s</p>
-                <p>%5$s</p>
-            </div>
-            <p>%6$s</p>
-            <a href="%7$s">Read More</a>
-        </div>',
-        $block_wrapper_attributes,
-        $primary_image,
-        $title,
-        $start_date,
-        $end_date,
-        $short_event_description,
-        $read_more_url
-    );
-}
+
+<div <?php echo ($block_wrapper_attributes) ?>>
+    <img src=<?php echo ($primary_image) ?>></img>
+    <div>
+        <h4 class="h2-small"><?php echo ($title) ?></h4>
+        <div>
+            <time class="body-small"><?php echo ($start_date) ?></time>
+            <?php
+            if (is_string($end_date) && strlen($end_date) > 0) {
+                echo '<span>-</span><time class="body-small">' . $end_date . '</time>';
+            }
+            ?>
+        </div>
+        <p><?php echo ($short_event_description) ?></p>
+        <a class="wp-block-button__link wp-element-button" href=<?php echo ($read_more_url) ?>>Read More</a>
+    </div>
+</div>

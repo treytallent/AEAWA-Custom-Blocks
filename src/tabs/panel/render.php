@@ -11,10 +11,8 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
         'data-wp-class--is-active' => 'actions.isActive',
     )
 );
+?>
 
-echo wp_sprintf(
-    '<section %1$s>%2$s<p>%3$s</p></section>',
-    $block_wrapper_attributes,
-    $content,
-    $category
-);
+<section <?php echo ($block_wrapper_attributes) ?>>
+    <?php echo ($content) ?>
+</section>
