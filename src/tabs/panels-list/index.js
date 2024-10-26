@@ -1,8 +1,6 @@
 import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
-import "./editor.css"
-import "./style.css"
 import metadata from "./block.json"
 
 const blocktemplate = [["artedwa-blocks/panel"], ["artedwa-blocks/panel"]]

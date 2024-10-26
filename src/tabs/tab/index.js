@@ -3,18 +3,25 @@ import { select, useDispatch, useSelect } from "@wordpress/data"
 import { createBlock, registerBlockType } from "@wordpress/blocks"
 import {
    DropdownMenu,
-   CheckboxControl,
-   CircularOptionPicker,
-   RadioControl,
    TextControl,
-   ToggleControl,
    SelectControl,
    PanelBody,
 } from "@wordpress/components"
 import { useEffect } from "@wordpress/element"
-import { academicCap, pencil, paintBrush, informationCircle } from "./icons"
-import "./style.css"
-import "./editor.css"
+import {
+   academicCap,
+   pencil,
+   paintBrush,
+   informationCircle,
+   openBook,
+   books,
+   globe,
+   certificate,
+   chatBubble,
+   rectangleGroup,
+   userGroup,
+} from "../tabs-wrapper/icons"
+
 import metadata from "./block.json"
 import { renderToString } from "react-dom/server"
 
@@ -150,10 +157,46 @@ registerBlockType(metadata.name, {
                            icon: paintBrush,
                            onClick: () => onChangeIcon(paintBrush),
                         },
+
                         {
                            title: "Information Circle",
                            icon: informationCircle,
                            onClick: () => onChangeIcon(informationCircle),
+                        },
+                        {
+                           title: "Open Book",
+                           icon: openBook,
+                           onClick: () => onChangeIcon(openBook),
+                        },
+                        {
+                           title: "Books",
+                           icon: books,
+                           onClick: () => onChangeIcon(books),
+                        },
+                        {
+                           title: "Globe",
+                           icon: globe,
+                           onClick: () => onChangeIcon(globe),
+                        },
+                        {
+                           title: "Certificate",
+                           icon: certificate,
+                           onClick: () => onChangeIcon(certificate),
+                        },
+                        {
+                           title: "Chat Bubble",
+                           icon: chatBubble,
+                           onClick: () => onChangeIcon(chatBubble),
+                        },
+                        {
+                           title: "Rectangle Group",
+                           icon: rectangleGroup,
+                           onClick: () => onChangeIcon(rectangleGroup),
+                        },
+                        {
+                           title: "User Group",
+                           icon: userGroup,
+                           onClick: () => onChangeIcon(userGroup),
                         },
                      ]}
                   />
@@ -161,7 +204,7 @@ registerBlockType(metadata.name, {
             </InspectorControls>
             <div {...blockProps}>
                {convertStringToIcon(icon)}
-               <h4>{title}</h4>
+               <h2>{title}</h2>
             </div>
          </>
       )

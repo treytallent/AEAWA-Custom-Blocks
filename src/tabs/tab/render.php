@@ -16,5 +16,5 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 
 <button <?php echo ($block_wrapper_attributes) ?>>
     <?php echo ($icon) ?>
-    <h3><?php echo ($title) ?></h3>
+    <h2 class="subheading"><?php echo ($title) ?></h3>
 </button>

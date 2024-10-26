@@ -1,0 +1,42 @@
+:root :where(.is-layout-flow) > * {
+   margin-block-start: 0 !important;
+}
+
+.wp-block-artedwa-blocks-tabs-wrapper {
+   max-width: 1280px;
+   margin: 0 2rem;
+}
+
+@media screen and (min-width: 1344px) {
+   .wp-block-artedwa-blocks-tabs-wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+   }
+}
+
+.icon-container {
+   width: 24px;
+   height: 100%;
+}
+
+.icon-container svg,
+div[aria-label="Select an Icon"] button svg {
+   fill: none;
+}
+
+.wp-block-artedwa-blocks-tabs-list {
+   div {
+      div {
+         display: flex;
+         gap: 1rem;
+      }
+   }
+}
+
+.wp-block-artedwa-blocks-tab {
+   h2 {
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 400;
+   }
+}

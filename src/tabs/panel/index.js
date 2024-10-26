@@ -3,7 +3,6 @@ import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
 import { select, useSelect } from "@wordpress/data"
 import { useEffect } from "@wordpress/element"
-import "./editor.css"
 import metadata from "./block.json"
 
 const blocktemplate = [
@@ -62,7 +61,7 @@ registerBlockType(metadata.name, {
       }, [clientId])
 
       const blockProps = useBlockProps({
-         className: isActive ? "active" : "",
+         className: isActive ? "is-active" : "",
       })
       return (
          <div {...blockProps}>

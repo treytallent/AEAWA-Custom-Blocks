@@ -1,8 +1,0 @@
-/* Panes are hidden by default and only displayed when active */
-.wp-block-artedwa-blocks-panel {
-   display: none;
-}
-
-.wp-block-artedwa-blocks-panel.is-active {
-   display: block;
-}

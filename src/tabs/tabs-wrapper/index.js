@@ -1,24 +1,14 @@
-import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
 import {
    InnerBlocks,
    useBlockProps,
    InspectorControls,
 } from "@wordpress/block-editor"
-import {
-   CheckboxControl,
-   RadioControl,
-   TextControl,
-   ToggleControl,
-   SelectControl,
-   PanelBody,
-} from "@wordpress/components"
-
-import { select, useSelect } from "@wordpress/data"
+import { SelectControl, PanelBody } from "@wordpress/components"
+import { useSelect } from "@wordpress/data"
 import { useEffect } from "@wordpress/element"
 import apiFetch from "@wordpress/api-fetch"
-import "./style.css"
-import "./editor.css"
+import "./editor.scss"
 import metadata from "./block.json"
 
 const blocktemplate = [
@@ -28,13 +18,7 @@ const blocktemplate = [
 
 registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId }) => {
-      const {
-         activeId,
-         taxonomies,
-         selectedTaxonomy,
-         selectedTaxonomyCategories,
-      } = attributes
-      // console.log("rendering tabs wrapper")
+      const { activeId, taxonomies, selectedTaxonomy } = attributes
 
       // Triggers a re-render when a tab block is selected
       // Returns the selected tab block

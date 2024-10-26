@@ -3,8 +3,7 @@ import { registerBlockType } from "@wordpress/blocks"
 import { useBlockProps } from "@wordpress/block-editor"
 import { select } from "@wordpress/data"
 import { useEffect } from "@wordpress/element"
-import "./style.scss"
-import "./editor.css"
+import "./editor.scss"
 import metadata from "./block.json"
 
 // get the parent panel and return it's attribute of "category"
@@ -37,13 +36,20 @@ registerBlockType(metadata.name, {
       return (
          <div {...blockProps}>
             <img></img>
-            <h4>Event Title</h4>
-            <div>
-               <p>Start Date</p>
-               <p>End Date</p>
+            <div className="card-container">
+               <h3 className="h2-sm">Event Title</h3>
+               <div className="card-time">
+                  <time className="body-sm">Start Date</time>
+                  <span>-</span>
+                  <time className="body-sm">End Date</time>
+               </div>
+               <p>Short event description</p>
+               <div className="wp-block-button is-style-secondary card-button-end">
+                  <a className="wp-block-button__link wp-element-button">
+                     Read More
+                  </a>
+               </div>
             </div>
-            <p>Short event description</p>
-            <a>Read More</a>
          </div>
       )
    },
