@@ -1,18 +1,13 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/event-card",
+   "name": "artedwa-blocks/carousel-controls",
    "version": "0.1.0",
-   "title": "Event Card",
+   "title": "Carousel Controls",
    "category": "widgets",
    "icon": "media-interactive",
-   "description": "Displays ACF Fields in a Card. Parent element must be a 'Post Template' block, which is a child of a 'Query Loop' block.",
+   "description": "An interactive block with the Interactivity API.",
    "example": {},
-   "attributes": {
-      "category": {
-         "type": "string"
-      }
-   },
    "supports": {
       "interactivity": true
    },

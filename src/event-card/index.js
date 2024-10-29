@@ -3,7 +3,6 @@ import { registerBlockType } from "@wordpress/blocks"
 import { useBlockProps } from "@wordpress/block-editor"
 import { select } from "@wordpress/data"
 import { useEffect } from "@wordpress/element"
-import "./editor.scss"
 import metadata from "./block.json"
 
 // get the parent panel and return it's attribute of "category"

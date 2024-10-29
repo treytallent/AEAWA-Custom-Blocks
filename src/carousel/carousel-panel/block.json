@@ -1,0 +1,35 @@
+{
+   "$schema": "https://schemas.wp.org/trunk/block.json",
+   "apiVersion": 3,
+   "name": "artedwa-blocks/carousel-panel",
+   "version": "0.1.0",
+   "title": "Carousel Panel",
+   "category": "widgets",
+   "icon": "media-interactive",
+   "description": "An interactive block with the Interactivity API.",
+   "example": {},
+   "supports": {
+      "interactivity": true
+   },
+   "attributes": {
+      "id": {
+         "type": "number"
+      },
+      "isActive": {
+         "type": "boolean",
+         "default": false
+      },
+      "postTitle": {
+         "type": "string"
+      },
+      "postDescription": {
+         "type": "string"
+      },
+      "postCTA": {
+         "type": "string"
+      }
+   },
+   "textdomain": "artedwa",
+   "editorScript": "file:./index.js",
+   "render": "file:./render.php"
+}

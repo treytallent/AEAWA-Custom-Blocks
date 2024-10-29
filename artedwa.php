@@ -33,6 +33,11 @@ function artedwa_blocks_artedwa_block_init()
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/panels-list');
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/panel');
 	register_block_type_from_metadata(__DIR__ . '/build/event-card');
+	register_block_type_from_metadata(__DIR__ . '/build/carousel/carousel-wrapper');
+	register_block_type_from_metadata(__DIR__ . '/build/carousel/carousel-panel');
+	register_block_type_from_metadata(__DIR__ . '/build/carousel/carousel-wrapper');
+	register_block_type_from_metadata(__DIR__ . '/build/carousel/carousel-controls');
+	register_block_type_from_metadata(__DIR__ . '/build/carousel/carousel-indicators');
 }
 
 add_action('init', 'artedwa_blocks_artedwa_block_init');
