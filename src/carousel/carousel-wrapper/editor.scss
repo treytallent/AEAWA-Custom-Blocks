@@ -1,6 +1,15 @@
 // Wrapper
 .wp-block-artedwa-blocks-carousel-wrapper {
    position: relative;
+   max-width: 1280px;
+   margin: 0 1rem;
+   // margin: 0 auto;
+}
+
+@media screen and (min-width: 1313px) {
+   .wp-block-artedwa-blocks-carousel-wrapper {
+      margin: 0 auto;
+   }
 }
 
 // Indicators
@@ -19,7 +28,7 @@
       border-radius: 4px;
       background-color: unset;
       aspect-ratio: 1/1;
-      border: 1px solid var(--wp--preset--color--black-mid);
+      border: 1.5px solid var(--wp--preset--color--black-mid);
       transition: transform 250ms;
    }
    button.active {
@@ -59,18 +68,12 @@
    }
 }
 // Panels
-.wp-block-artedwa-blocks-carousel-panel.is-active {
-   display: grid;
-   max-width: 1280px;
-   padding: 0 2rem;
-   margin: 0 auto;
-   gap: 2rem;
-   grid-template-columns: repeat(12, 1fr);
+.wp-block-artedwa-blocks-carousel-panel {
+   display: none;
 }
 
-.wp-block-artedwa-blocks-carousel-panel {
+.wp-block-artedwa-blocks-carousel-panel:first-child {
    display: grid;
-   max-width: 1280px;
    padding: 0 2rem;
    margin: 0 auto;
    gap: 2rem;
