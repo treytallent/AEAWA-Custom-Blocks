@@ -3,7 +3,6 @@
    position: relative;
    max-width: 1280px;
    margin: 0 1rem;
-   // margin: 0 auto;
 }
 
 @media screen and (min-width: 1313px) {
@@ -31,7 +30,7 @@
       border: 1.5px solid var(--wp--preset--color--black-mid);
       transition: transform 250ms;
    }
-   button.active {
+   button.is-active {
       background-color: var(--wp--preset--color--yellow-mid);
    }
    button:hover {

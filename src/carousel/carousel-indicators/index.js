@@ -3,16 +3,8 @@ import { registerBlockType } from "@wordpress/blocks"
 import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
-   edit: ({ attributes: { id, isActive } }) => {
-      const activeId = 2
-
-      const indicators = [
-         { id: 0, isActive: false },
-         { id: 1, isActive: false },
-         { id: 2, isActive: false },
-         { id: 3, isActive: false },
-         { id: 4, isActive: false },
-      ]
+   edit: ({ attributes: { id, isActive, indicators } }) => {
+      const activeId = 1
 
       const blockProps = useBlockProps()
       return (

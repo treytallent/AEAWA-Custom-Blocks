@@ -16,8 +16,7 @@
          "type": "number"
       },
       "isActive": {
-         "type": "boolean",
-         "default": false
+         "type": "boolean"
       },
       "postTitle": {
          "type": "string"

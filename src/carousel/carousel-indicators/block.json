@@ -18,6 +18,16 @@
       "isActive": {
          "type": "boolean",
          "default": false
+      },
+      "indicators": {
+         "type": "array",
+         "default": [
+            { "id": 1, "isActive": false },
+            { "id": 2, "isActive": false },
+            { "id": 3, "isActive": false },
+            { "id": 4, "isActive": false },
+            { "id": 5, "isActive": false }
+         ]
       }
    },
    "textdomain": "artedwa",

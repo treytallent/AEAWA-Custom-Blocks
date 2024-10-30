@@ -4,9 +4,8 @@ import metadata from "./block.json"
 import { turquoise2 } from "/assets/paint-splatter.js"
 
 registerBlockType(metadata.name, {
-   edit: ({ attributes: { id, isActive } }) => {
+   edit: ({ attributes: { id, isActive }, setAttributes, clientId }) => {
       const blockProps = useBlockProps()
-
       return (
          <div {...blockProps}>
             <div className="card-container">
