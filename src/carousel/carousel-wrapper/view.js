@@ -8,12 +8,11 @@ const { state } = store("artedwa-carousel", {
    actions: {
       setActive: () => {
          const context = getContext()
-         state.activeIndex = Number(context)
-         console.log(typeof state.activeIndex, "active state index")
+         state.activeIndex = Number(context.id)
       },
       isActive: () => {
          const context = getContext()
-         return Number(context) === state.activeIndex
+         return Number(context.id) === state.activeIndex
       },
       incrementIndex: () => {
          if (state.activeIndex < 5) {
