@@ -7,7 +7,6 @@ import "./editor.scss"
 registerBlockType(metadata.name, {
    edit: ({ attributes: { activeId, postIds }, setAttributes, clientId }) => {
       const blockProps = useBlockProps()
-
       return (
          <div {...blockProps}>
             <InnerBlocks />

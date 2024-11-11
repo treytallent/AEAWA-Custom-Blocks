@@ -1,0 +1,22 @@
+{
+   "$schema": "https://schemas.wp.org/trunk/block.json",
+   "apiVersion": 3,
+   "name": "artedwa-blocks/organisation-info",
+   "version": "0.1.0",
+   "title": "Organisation Information",
+   "category": "widgets",
+   "icon": "media-interactive",
+   "description": "Displays information for an organisation.",
+   "example": {},
+   "attributes": {
+      "category": {
+         "type": "string"
+      }
+   },
+   "supports": {
+      "interactivity": true
+   },
+   "textdomain": "artedwa",
+   "editorScript": "file:./index.js",
+   "render": "file:./render.php"
+}
