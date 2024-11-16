@@ -1,0 +1,18 @@
+{
+   "$schema": "https://schemas.wp.org/trunk/block.json",
+   "apiVersion": 3,
+   "name": "artedwa-blocks/link-wrapper",
+   "version": "0.1.0",
+   "title": "Link Wrapper",
+   "category": "widgets",
+   "icon": "media-interactive",
+   "description": "Links to the specified page URL when clicking any of the inner blocks.",
+   "attributes": {
+      "linkUrl": {
+         "type": "string",
+         "default": "/"
+      }
+   },
+   "textdomain": "artedwa",
+   "editorScript": "file:./index.js"
+}

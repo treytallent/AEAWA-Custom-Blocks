@@ -40,6 +40,7 @@ function artedwa_blocks_artedwa_block_init()
 	register_block_type_from_metadata(__DIR__ . '/build/carousel/carousel-indicators');
 	register_block_type_from_metadata(__DIR__ . '/build/scrolling-carousel');
 	register_block_type_from_metadata(__DIR__ . '/build/organisation-info');
+	register_block_type_from_metadata(__DIR__ . '/build/link-wrapper');
 }
 add_action('init', 'artedwa_blocks_artedwa_block_init');
 

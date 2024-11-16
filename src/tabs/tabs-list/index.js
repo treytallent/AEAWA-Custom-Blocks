@@ -7,6 +7,10 @@ const blocktemplate = [["artedwa-blocks/tab"], ["artedwa-blocks/tab"]]
 
 registerBlockType(metadata.name, {
    edit: props => {
+      const test = term => {
+         console.log(term)
+      }
+
       // console.log("rendering tabs list")
       const blockProps = useBlockProps()
       return (
