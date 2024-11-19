@@ -2,6 +2,7 @@ import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
 import metadata from "./block.json"
 import "./style.scss"
+import "./editor.scss"
 
 registerBlockType(metadata.name, {
    edit: () => {

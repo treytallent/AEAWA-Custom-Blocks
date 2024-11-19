@@ -1,7 +1,3 @@
-:root :where(.is-layout-flow) > * {
-   margin-block-start: 0 !important;
-}
-
 .wp-block-artedwa-blocks-tabs-wrapper {
    max-width: 1280px;
    margin: 0 2rem;
@@ -39,4 +35,8 @@ div[aria-label="Select an Icon"] button svg {
       line-height: 24px;
       font-weight: 400;
    }
+}
+
+.wp-block-artedwa-blocks-panel:first-of-type {
+   display: block;
 }

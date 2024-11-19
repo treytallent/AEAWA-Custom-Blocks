@@ -1,6 +1,8 @@
+.wp-block-artedwa-blocks-carousel-panel:not(.is-active) {
+   display: none;
+}
+
 .wp-block-artedwa-blocks-carousel-wrapper {
-   max-width: 672px;
-   margin: 0 auto;
    position: relative;
    display: grid;
    grid-template-columns: 1fr;
@@ -25,7 +27,8 @@
       cursor: pointer;
       display: flex;
       height: fit-content;
-      z-index: 10;
+      margin-bottom: -24px;
+      z-index: 50;
       width: 100%;
       justify-content: space-between;
 
@@ -76,32 +79,20 @@
       grid-template-rows: 400px 1fr;
 
       svg,
-      img {
+      figure {
          grid-row: 1;
          grid-column: 1;
       }
 
-      svg {
-         place-self: center;
-         grid-row: 1;
-         position: relative;
-         inset: 0;
-         z-index: 0;
-         width: 100%;
-         height: 135%;
+      img {
+         max-width: 100%;
+         max-height: 80%;
+         object-fit: cover;
       }
 
-      img {
-         position: relative;
-         z-index: 10;
-         grid-row: 1;
-         margin: auto;
-         max-width: 85%;
-         min-height: 50%;
-         max-height: 75%;
-         object-fit: cover;
-         border-radius: 40px;
-         border: 1px solid var(--wp--preset--color--black-light);
+      svg {
+         max-width: 105%;
+         max-height: 120%;
       }
 
       .card-container {
@@ -109,36 +100,13 @@
          z-index: 10;
          grid-column: 1;
          grid-row: 2;
-         display: flex;
-         flex-direction: column;
-
-         h2 {
-            margin: 0;
-            color: var(--wp--preset--color--coral-mid);
-            margin: 4px 0;
-         }
-
-         h3 {
-            margin: 0;
-            font-size: 44px;
-            line-height: 1;
-            margin-bottom: var(--wp--style--block-gap);
-         }
-
-         p {
-            margin: 0;
-            margin-bottom: 32px;
-         }
+         text-align: center;
       }
    }
-}
-.wp-block-artedwa-blocks-carousel-panel {
-   display: none;
 }
 
 @media screen and (min-width: 1000px) {
    .wp-block-artedwa-blocks-carousel-wrapper {
-      max-width: 1280px;
       height: 100%;
       grid-template-columns: repeat(12, 1fr);
       grid-template-rows: 520px;
@@ -164,11 +132,14 @@
          grid-template-rows: 520px;
 
          .card-container {
+            align-items: unset;
+            text-align: unset;
+            margin-top: unset !important;
             grid-column: 2 / span 5;
             grid-row: 1;
          }
 
-         img,
+         figure,
          svg {
             grid-row: 1;
          }
@@ -177,9 +148,14 @@
             grid-column: 7/ -1;
          }
 
-         img {
+         figure {
             grid-column: 7 / span 6;
             margin-right: 64px;
+            height: 100%;
+
+            img {
+               margin-top: 3rem;
+            }
          }
       }
    }

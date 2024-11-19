@@ -1,131 +1,73 @@
-// // Wrapper
-// .wp-block-artedwa-blocks-carousel-wrapper {
-//    position: relative;
-//    max-width: 1280px;
-//    margin: 0 1rem;
-// }
+.wp-block-artedwa-blocks-carousel-wrapper {
+   .block-editor-inner-blocks {
+      grid-column: 1/-1;
 
-// @media screen and (min-width: 1313px) {
+      .block-editor-block-list__layout {
+         position: relative;
+         display: grid;
+         grid-template-columns: 1fr;
+         grid-template-rows: 400px 1fr;
+
+         .wp-block-artedwa-blocks-carousel-controls {
+            margin-top: 0;
+         }
+
+         .wp-block-artedwa-blocks-carousel-indicators {
+            margin-top: 0;
+         }
+
+         .wp-block-query {
+            margin-top: 0;
+            grid-column: 1/-1;
+            ul {
+               li:first-of-type {
+                  display: block;
+                  height: 100%;
+                  overflow: hidden;
+
+                  div {
+                     display: block;
+                  }
+
+                  figure {
+                     margin-top: 32px;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+// @media screen and (min-width: 1000px) {
 //    .wp-block-artedwa-blocks-carousel-wrapper {
-//       margin: 0 auto;
-//    }
-// }
+//       .block-editor-inner-blocks {
+//          .block-editor-block-list__layout {
+//             height: 100%;
+//             grid-template-columns: repeat(12, 1fr);
+//             grid-template-rows: 520px;
 
-// // Indicators
-// .wp-block-artedwa-blocks-carousel-indicators {
-//    cursor: pointer;
-//    display: flex;
-//    column-gap: 8px;
-//    position: absolute !important;
-//    bottom: 3rem;
-//    z-index: 10;
-//    left: 50%;
+//             .wp-block-artedwa-blocks-carousel-controls {
+//             }
 
-//    button {
-//       height: 12px;
-//       padding: 8px;
-//       border-radius: 4px;
-//       background-color: unset;
-//       aspect-ratio: 1/1;
-//       border: 1.5px solid var(--wp--preset--color--black-mid);
-//       transition: transform 250ms;
-//    }
-//    button.is-active {
-//       background-color: var(--wp--preset--color--yellow-mid);
-//    }
-//    button:hover {
-//       transform: scale(1.25);
-//    }
-// }
+//             .wp-block-artedwa-blocks-carousel-indicators {
+//             }
 
-// // Controls
-// .wp-block-artedwa-blocks-carousel-controls {
-//    cursor: pointer;
-//    position: absolute !important;
-//    top: 50%;
-//    z-index: 10;
-//    display: flex;
-//    width: 100%;
-//    justify-content: space-between;
+//             .wp-block-query {
+//                grid-column: 1/-1;
+//                width: 100%;
 
-//    button {
-//       border-radius: 100%;
-//       width: 60px;
-//       aspect-ratio: 1/1;
-//       background-color: white;
-//       border: 2px solid var(--wp--preset--color--black-mid);
-
-//       svg {
-//          transition: transform 250ms;
+//                ul {
+//                   grid-column: 1/-1;
+//                   li:first-of-type {
+//                      .block-editor-block-list__layout {
+//                         display: grid;
+//                         grid-template-columns: repeat(12, 1fr);
+//                      }
+//                   }
+//                }
+//             }
+//          }
 //       }
-//    }
-
-//    button:hover {
-//       svg {
-//          transform: scale(1.25);
-//       }
-//    }
-// }
-// // Panels
-// .wp-block-artedwa-blocks-carousel-panel {
-//    display: none;
-// }
-
-// .wp-block-artedwa-blocks-carousel-panel:first-child {
-//    display: grid;
-//    padding: 0 2rem;
-//    margin: 0 auto;
-//    gap: 2rem;
-//    grid-template-columns: repeat(12, 1fr);
-
-//    .card-container {
-//       grid-column: 2 / span 5;
-//       display: flex;
-//       flex-direction: column;
-//       margin: auto 0;
-
-//       * {
-//          margin: 0;
-//       }
-
-//       .subheading-bold {
-//          font-size: 18px;
-//          line-height: 28px;
-//          font-weight: 700;
-//          color: var(--wp--preset--color--coral-mid);
-//          margin-bottom: 8px;
-//       }
-//       .h1-lg {
-//          font-size: 54px;
-//          line-height: 60px;
-//          font-weight: 700;
-//          margin-bottom: 32px;
-//       }
-//       .body-lg {
-//          font-size: 18px;
-//          line-height: 28px;
-//          margin-bottom: 32px;
-//       }
-//    }
-
-//    img {
-//       position: relative;
-//       z-index: 10;
-//       grid-row: 1;
-//       grid-column: 8 / span 4;
-//       width: 100%;
-//       height: 50%;
-//       margin: auto 0;
-//       border-radius: 40px;
-//       background-color: lightgrey;
-//    }
-//    svg {
-//       grid-row: 1;
-//       grid-column: 7 / -1;
-//       position: relative;
-//       inset: 0;
-//       z-index: 0;
-//       width: 100%;
-//       height: 100%;
 //    }
 // }

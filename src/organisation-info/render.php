@@ -1,9 +1,9 @@
 <?php
 
 $post_id = get_the_ID();
-$title = get_the_title($post_id);
-$primary_image = get_field('primary_image', $post_id);
-$organisation_url = get_field('organisation_url', $post_id);
+$title = get_field("we-support-fields-title", $post_id);
+$primary_image = get_field('we-support-fields-img', $post_id);
+$organisation_url = get_field('we-support-fields-url', $post_id);
 $block_wrapper_attributes = get_block_wrapper_attributes();
 
 ?>

@@ -10,7 +10,14 @@
    "allowedBlocks": ["artedwa-blocks/tabs-list", "artedwa-blocks/panels-list"],
    "example": {},
    "supports": {
-      "interactivity": true
+      "interactivity": true,
+      "layout": true,
+      "align": true,
+      "spacing": {
+         "margin": true,
+         "padding": true,
+         "blockGap": true
+      }
    },
    "attributes": {
       "activeId": {
@@ -35,6 +42,7 @@
    "textdomain": "artedwa",
    "editorScript": "file:./index.js",
    "editorStyle": "file:./index.css",
+   "style": "file:./style-index.css",
    "render": "file:./render.php",
    "viewScriptModule": "file:./view.js"
 }

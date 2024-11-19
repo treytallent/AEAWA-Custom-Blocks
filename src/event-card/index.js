@@ -4,6 +4,7 @@ import { useBlockProps } from "@wordpress/block-editor"
 import { select } from "@wordpress/data"
 import { useEffect } from "@wordpress/element"
 import metadata from "./block.json"
+import "./style.scss"
 
 // get the parent panel and return it's attribute of "category"
 // set it's category attribute to the acf card too
