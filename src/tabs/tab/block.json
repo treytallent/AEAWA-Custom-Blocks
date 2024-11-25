@@ -1,7 +1,7 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/tab",
+   "name": "aeawa-blocks/tab",
    "version": "0.1.0",
    "title": "Tab",
    "category": "widgets",
@@ -15,9 +15,6 @@
       "isActive": {
          "type": "boolean",
          "default": false
-      },
-      "selectedCategory": {
-         "type": "string"
       },
       "title": {
          "type": "string",
@@ -37,7 +34,7 @@
    "supports": {
       "interactivity": true
    },
-   "textdomain": "artedwa",
+   "textdomain": "aeawa",
    "editorScript": "file:./index.js",
    "render": "file:./render.php"
 }

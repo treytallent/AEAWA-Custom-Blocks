@@ -1,10 +1,10 @@
-import { store, getContext, getElement } from "@wordpress/interactivity"
+import { store } from "@wordpress/interactivity"
 const { state } = store("scrolling-carousel", {
    state: {},
    actions: {
       incrementContainer: () => {
          const ul = document.querySelector(
-            ".wp-block-artedwa-blocks-scrolling-carousel ul"
+            ".wp-block-aeawa-blocks-scrolling-carousel ul"
          )
          ul.scrollBy({
             left: 212,
@@ -13,7 +13,7 @@ const { state } = store("scrolling-carousel", {
       },
       decrementContainer: () => {
          const ul = document.querySelector(
-            ".wp-block-artedwa-blocks-scrolling-carousel ul"
+            ".wp-block-aeawa-blocks-scrolling-carousel ul"
          )
          ul.scrollBy({
             left: -212,

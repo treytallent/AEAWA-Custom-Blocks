@@ -5,7 +5,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes()
 
 ?>
 
-<div <?php echo ($block_wrapper_attributes) ?> data-wp-interactive="artedwa-carousel">
+<div <?php echo ($block_wrapper_attributes) ?> data-wp-interactive="aeawa-carousel">
     <button data-wp-on--click="actions.decrementIndex">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6566 1.17824C13.1193 1.63301 13.1193 2.37034 12.6566 2.82511L4.04481 10.3807H22.8153C23.4696 10.3807 24 10.902 24 11.5452C24 12.1883 23.4696 12.7097 22.8153 12.7097H4.04481L12.6566 21.1748C13.1193 21.6296 13.1193 22.3669 12.6566 22.8217C12.194 23.2764 11.4439 23.2764 10.9812 22.8217L0.34699 12.3686C-0.115663 11.9139 -0.115663 11.1765 0.34699 10.7218L10.9812 1.17824C11.4439 0.723465 12.194 0.723465 12.6566 1.17824Z" fill="#111111" />

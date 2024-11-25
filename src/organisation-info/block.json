@@ -1,7 +1,7 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/organisation-info",
+   "name": "aeawa-blocks/organisation-info",
    "version": "0.1.0",
    "title": "Organisation Information",
    "category": "widgets",
@@ -16,7 +16,7 @@
    "supports": {
       "interactivity": true
    },
-   "textdomain": "artedwa",
+   "textdomain": "aeawa",
    "editorScript": "file:./index.js",
    "render": "file:./render.php"
 }

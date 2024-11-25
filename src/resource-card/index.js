@@ -14,35 +14,11 @@ registerBlockType(metadata.name, {
       const { category } = attributes
       const blockProps = useBlockProps()
 
-      function setCategory() {
-         const parentPanel = getParentPanel()
-         setAttributes({ category: parentPanel.attributes.selectedCategory })
-      }
-
-      // Loops through parents until it returns a parent component of panel
-      // Useful for deeply nested acf-card blocks
-      function getParentPanel() {
-         const parentPanel = select(
-            "core/block-editor"
-         ).getBlockParentsByBlockName(clientId, ["aeawa-blocks/panel"])
-         return select("core/block-editor").getBlock(parentPanel[0])
-      }
-
-      useEffect(() => {
-         if (!category === null) return
-         setCategory()
-      }, [clientId])
-
       return (
          <div {...blockProps}>
             <img></img>
             <div className="card-container">
-               <h3 className="h2-sm">Event Title</h3>
-               <div className="card-time">
-                  <time className="body-sm">Start Date</time>
-                  <span>-</span>
-                  <time className="body-sm">End Date</time>
-               </div>
+               <h3 className="has-26-36-s-font-size">Resource Title</h3>
                <p>Short event description</p>
                <div className="wp-block-button is-style-secondary card-button-end">
                   <a className="wp-block-button__link wp-element-button">

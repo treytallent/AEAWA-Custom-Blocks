@@ -1,13 +1,13 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/tabs-wrapper",
+   "name": "aeawa-blocks/tabs-wrapper",
    "version": "0.1.0",
    "title": "Tabs",
    "category": "widgets",
    "icon": "media-interactive",
    "description": "Wrapper for tabs and their panels.",
-   "allowedBlocks": ["artedwa-blocks/tabs-list", "artedwa-blocks/panels-list"],
+   "allowedBlocks": ["aeawa-blocks/tabs-list", "aeawa-blocks/panels-list"],
    "example": {},
    "supports": {
       "interactivity": true,
@@ -24,22 +24,13 @@
          "type": "number",
          "default": 0
       },
-      "taxonomies": {
-         "type": "array"
-      },
-      "selectedTaxonomy": {
-         "type": "string"
-      },
-      "selectedTaxonomyCategories": {
-         "type": "array"
-      },
       "lock": {
          "type": "boolean",
          "remove": true,
          "move": true
       }
    },
-   "textdomain": "artedwa",
+   "textdomain": "aeawa",
    "editorScript": "file:./index.js",
    "editorStyle": "file:./index.css",
    "style": "file:./style-index.css",

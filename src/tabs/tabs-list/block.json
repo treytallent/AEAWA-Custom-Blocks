@@ -1,14 +1,14 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/tabs-list",
+   "name": "aeawa-blocks/tabs-list",
    "version": "0.1.0",
    "title": "Tabs List",
    "category": "widgets",
    "icon": "media-interactive",
    "description": "Contains the Tab blocks.",
    "example": {},
-   "allowedBlocks": ["artedwa-blocks/tab"],
+   "allowedBlocks": ["aeawa-blocks/tab"],
    "supports": {
       "interactivity": true,
       "layout": true,
@@ -28,7 +28,7 @@
          }
       }
    },
-   "textdomain": "artedwa",
+   "textdomain": "aeawa",
    "editorScript": "file:./index.js",
    "editorStyle": "file:./index.css",
    "style": "file:./style-index.css",

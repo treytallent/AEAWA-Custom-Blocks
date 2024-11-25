@@ -1,31 +1,24 @@
 <?php
 
 /**
- * Plugin Name:       ArtEdWA Plugin
- * Description:       Handles custom blocks for ArtEdWA.
+ * Plugin Name:       AEAWA Blocks
+ * Description:       Handles custom blocks for AEAWA.
  * Version:           0.1.0
  * Requires at least: 6.6
  * Requires PHP:      7.2
  * Author:            MESH
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       artedwa
+ * Text Domain:       aeawa
  *
- * @package           artedwa-blocks
+ * @package           aeawa-blocks
  */
 
 if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-/**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
- */
-function artedwa_blocks_artedwa_block_init()
+function aeawa_blocks_aeawa_block_init()
 {
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/tabs-wrapper');
 	register_block_type_from_metadata(__DIR__ . '/build/tabs/tabs-list');
@@ -41,40 +34,6 @@ function artedwa_blocks_artedwa_block_init()
 	register_block_type_from_metadata(__DIR__ . '/build/scrolling-carousel');
 	register_block_type_from_metadata(__DIR__ . '/build/organisation-info');
 	register_block_type_from_metadata(__DIR__ . '/build/link-wrapper');
+	register_block_type_from_metadata(__DIR__ . '/build/resource-card');
 }
-add_action('init', 'artedwa_blocks_artedwa_block_init');
-
-// Allow SVG
-add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mimes) {
-
-	global $wp_version;
-	if ($wp_version !== '4.7.1') {
-		return $data;
-	}
-
-	$filetype = wp_check_filetype($filename, $mimes);
-
-	return [
-		'ext'             => $filetype['ext'],
-		'type'            => $filetype['type'],
-		'proper_filename' => $data['proper_filename']
-	];
-}, 10, 4);
-
-function cc_mime_types($mimes)
-{
-	$mimes['svg'] = 'image/svg+xml';
-	return $mimes;
-}
-add_filter('upload_mimes', 'cc_mime_types');
-
-function fix_svg()
-{
-	echo '<style type="text/css">
-		  .attachment-266x266, .thumbnail img {
-			   width: 100% !important;
-			   height: auto !important;
-		  }
-		  </style>';
-}
-add_action('admin_head', 'fix_svg');
+add_action('init', 'aeawa_blocks_aeawa_block_init');

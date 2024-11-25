@@ -1,4 +1,4 @@
-.wp-block-aeawa-blocks-event-card {
+.wp-block-aeawa-blocks-resource-card {
    position: relative;
    height: 100%;
    border-radius: 16px;
@@ -13,7 +13,7 @@
 
    h3,
    p {
-      margin: 0;
+      margin: unset;
    }
 
    img {
@@ -31,20 +31,6 @@
       background-color: white;
       padding: 32px;
       height: 100%;
-   }
-
-   .card-time {
-      position: absolute;
-      background-color: inherit;
-      display: flex;
-      flex-direction: row;
-      height: fit-content;
-      gap: 4px;
-      top: -43px;
-      left: 0;
-      padding: 24px 24px 0px 24px;
-      border-radius: 8px 8px 0px 0px;
-      align-items: baseline;
    }
 
    .card-button-end {

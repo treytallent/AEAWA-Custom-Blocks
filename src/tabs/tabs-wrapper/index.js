@@ -12,20 +12,15 @@ import "./editor.scss"
 import "./style.scss"
 import metadata from "./block.json"
 
-const blocktemplate = [
-   ["artedwa-blocks/tabs-list"],
-   ["artedwa-blocks/panels-list"],
-]
+const blocktemplate = [["aeawa-blocks/tabs-list"], ["aeawa-blocks/panels-list"]]
 
 registerBlockType(metadata.name, {
-   edit: ({ attributes, setAttributes, clientId }) => {
-      const { activeId, taxonomies, selectedTaxonomy } = attributes
-
+   edit: ({ attributes: { activeId }, setAttributes }) => {
       // Triggers a re-render when a tab block is selected
       // Returns the selected tab block
       const newActiveId = useSelect(select => {
          const block = select("core/block-editor").getSelectedBlock()
-         if (block && block.name === "artedwa-blocks/tab") {
+         if (block && block.name === "aeawa-blocks/tab") {
             return block.attributes.id
          }
          return null
@@ -38,68 +33,11 @@ registerBlockType(metadata.name, {
          }
       }, [newActiveId])
 
-      // Returns taxonomy information after first mount
-      const taxonomiesFetch = useSelect(
-         select => {
-            return select("core").getTaxonomies()
-         },
-         [clientId]
-      )
-
-      // Runs when the value of taxonomies changes
-      useEffect(() => {
-         if (taxonomiesFetch === null) return
-         const acfTaxonomies = taxonomiesFetch.filter(
-            i => i.rest_base === "acf-taxonomy"
-         )
-         const acfTaxonomyNameSlugs = acfTaxonomies.map(t => ({
-            name: t.name,
-            slug: t.slug,
-         }))
-         setAttributes({ taxonomies: acfTaxonomyNameSlugs })
-      }, [taxonomiesFetch])
-
-      // Sets selectedTaxonomyCategories
-      useEffect(() => {
-         if (selectedTaxonomy != "Please select") {
-            apiFetch({ path: "/wp/v2/acf-taxonomy" })
-               .then(fetchedTerms => {
-                  const termNames = fetchedTerms.map(t => ({
-                     name: t.name,
-                     slug: t.slug,
-                  }))
-                  setAttributes({ selectedTaxonomyCategories: termNames })
-               })
-               .catch(error => {
-                  console.error("Error fetching terms:", error)
-               })
-         }
-      }, [selectedTaxonomy])
-
-      function onChangeTaxonomy(selectedTaxonomy) {
-         setAttributes({ selectedTaxonomy: selectedTaxonomy })
-      }
-
       const blockProps = useBlockProps()
       return (
          <>
             <InspectorControls>
-               <PanelBody title="Tabs Options">
-                  <SelectControl
-                     label="Select Control"
-                     value={selectedTaxonomy || "Please select"}
-                     options={[
-                        { label: "Please select", value: "" },
-                        ...(taxonomies
-                           ? taxonomies.map(t => ({
-                                label: t.name,
-                                value: t.slug,
-                             }))
-                           : []),
-                     ]}
-                     onChange={onChangeTaxonomy}
-                  />
-               </PanelBody>
+               <PanelBody title="Tabs Options"></PanelBody>
             </InspectorControls>
             <section {...blockProps}>
                <InnerBlocks

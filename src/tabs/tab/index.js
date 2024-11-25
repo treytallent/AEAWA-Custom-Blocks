@@ -1,12 +1,7 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor"
-import { select, useDispatch, useSelect } from "@wordpress/data"
+import { useDispatch, useSelect } from "@wordpress/data"
 import { createBlock, registerBlockType } from "@wordpress/blocks"
-import {
-   DropdownMenu,
-   TextControl,
-   SelectControl,
-   PanelBody,
-} from "@wordpress/components"
+import { DropdownMenu, TextControl, PanelBody } from "@wordpress/components"
 import { useEffect } from "@wordpress/element"
 import {
    academicCap,
@@ -18,8 +13,13 @@ import {
    globe,
    certificate,
    chatBubble,
+   calendar,
    rectangleGroup,
    userGroup,
+   gallery,
+   tools,
+   puzzlePiece,
+   folder,
 } from "../tabs-wrapper/icons"
 
 import metadata from "./block.json"
@@ -27,19 +27,19 @@ import { renderToString } from "react-dom/server"
 
 registerBlockType(metadata.name, {
    edit: ({ attributes, setAttributes, clientId }) => {
-      const { title, id, icon, isActive, selectedCategory } = attributes
+      const { title, id, icon, isActive } = attributes
       const { insertBlock } = useDispatch("core/block-editor")
+      console.log(icon)
 
       // Triggers a re-render when a new activeId value is set
       // Returns the attribute activeId from the parent tabs-wrapper
-      const { activeTabId, categories } = useSelect(select => {
+      const { activeTabId } = useSelect(select => {
          const parentBlockId =
             select("core/block-editor").getBlockHierarchyRootClientId(clientId)
          const attr =
             select("core/block-editor").getBlockAttributes(parentBlockId)
          return {
             activeTabId: attr.activeId,
-            categories: attr.selectedTaxonomyCategories,
          }
       }, [])
 
@@ -59,7 +59,7 @@ registerBlockType(metadata.name, {
          if (!id === undefined) return
          const indexValue = wp.data
             .select("core/block-editor")
-            .getBlockIndex(clientId, ["artedwa-blocks/tab"])
+            .getBlockIndex(clientId, ["aeawa-blocks/tab"])
          setAttributes({ id: indexValue })
 
          // Sets the icon for new tabs
@@ -77,16 +77,12 @@ registerBlockType(metadata.name, {
       function addTabPanel(indexValue) {
          const panelsListClientId = wp.data
             .select("core/block-editor")
-            .getBlocksByName("artedwa-blocks/panels-list")
+            .getBlocksByName("aeawa-blocks/panels-list")
 
-         const newPane = createBlock("artedwa-blocks/panel", {
+         const newPane = createBlock("aeawa-blocks/panel", {
             id: indexValue,
          })
          insertBlock(newPane, indexValue, panelsListClientId[0])
-      }
-
-      function onChangeCategory(newSelectedCategory) {
-         setAttributes({ selectedCategory: newSelectedCategory })
       }
 
       function onChangeTitle(newTitle) {
@@ -119,18 +115,6 @@ registerBlockType(metadata.name, {
          <>
             <InspectorControls>
                <PanelBody title="Tab Options">
-                  <SelectControl
-                     label="Select Category"
-                     value={selectedCategory || ""}
-                     options={
-                        categories &&
-                        categories.map(t => ({
-                           label: t.name,
-                           value: t.slug,
-                        }))
-                     }
-                     onChange={onChangeCategory}
-                  />
                   <TextControl
                      label="Enter a Tab Name"
                      value={title || ""}
@@ -189,6 +173,11 @@ registerBlockType(metadata.name, {
                            onClick: () => onChangeIcon(chatBubble),
                         },
                         {
+                           title: "Calendar",
+                           icon: calendar,
+                           onClick: () => onChangeIcon(calendar),
+                        },
+                        {
                            title: "Rectangle Group",
                            icon: rectangleGroup,
                            onClick: () => onChangeIcon(rectangleGroup),
@@ -197,6 +186,26 @@ registerBlockType(metadata.name, {
                            title: "User Group",
                            icon: userGroup,
                            onClick: () => onChangeIcon(userGroup),
+                        },
+                        {
+                           title: "Gallery",
+                           icon: gallery,
+                           onClick: () => onChangeIcon(gallery),
+                        },
+                        {
+                           title: "Tools",
+                           icon: tools,
+                           onClick: () => onChangeIcon(tools),
+                        },
+                        {
+                           title: "Puzzle Piece",
+                           icon: puzzlePiece,
+                           onClick: () => onChangeIcon(puzzlePiece),
+                        },
+                        {
+                           title: "Folder",
+                           icon: folder,
+                           onClick: () => onChangeIcon(folder),
                         },
                      ]}
                   />

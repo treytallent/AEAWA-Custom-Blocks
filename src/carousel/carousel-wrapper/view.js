@@ -1,6 +1,6 @@
 import { store, getContext } from "@wordpress/interactivity"
 
-const { state } = store("artedwa-carousel", {
+const { state } = store("aeawa-carousel", {
    state: {
       activeIndex: 1,
       allIds: [],

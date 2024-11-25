@@ -1,7 +1,6 @@
-import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
-import { select, useSelect } from "@wordpress/data"
+import { useSelect } from "@wordpress/data"
 import { useEffect } from "@wordpress/element"
 import metadata from "./block.json"
 
@@ -11,11 +10,10 @@ const blocktemplate = [
 
 registerBlockType(metadata.name, {
    edit: ({ clientId, attributes, setAttributes }) => {
-      const { id, selectedCategory, isActive } = attributes
+      const { id, isActive } = attributes
 
-      // Triggers a re-render when a new activeId or category value is set
       // Returns the attribute activeId from the parent tabs-wrapper
-      const { activeTabId, category } = useSelect(select => {
+      const { activeTabId } = useSelect(select => {
          const parentBlockId =
             select("core/block-editor").getBlockHierarchyRootClientId(clientId)
          const parentAttr =
@@ -32,13 +30,8 @@ registerBlockType(metadata.name, {
          )
          return {
             activeTabId: parentAttr.activeId,
-            category: matchingTab.attributes.selectedCategory,
          }
       }, [])
-
-      useEffect(() => {
-         setAttributes({ selectedCategory: category })
-      }, [category])
 
       // Sets the isActive attribute to either true or false each time the value of activeTabId changes
       useEffect(() => {
@@ -56,7 +49,7 @@ registerBlockType(metadata.name, {
          if (!id === undefined) return
          const indexValue = wp.data
             .select("core/block-editor")
-            .getBlockIndex(clientId, ["artedwa-blocks/tab"])
+            .getBlockIndex(clientId, ["aeawa-blocks/tab"])
          setAttributes({ id: indexValue })
       }, [clientId])
 

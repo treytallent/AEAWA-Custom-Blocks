@@ -1,8 +1,29 @@
-.wp-block-artedwa-blocks-carousel-panel:not(.is-active) {
+.wp-block-aeawa-blocks-carousel-panel:not(.is-active) {
    display: none;
 }
 
-.wp-block-artedwa-blocks-carousel-wrapper {
+.wp-block-aeawa-blocks-carousel-panel.is-active {
+   display: grid;
+   .card-container {
+      * {
+         animation: appear 300ms ease-out;
+      }
+   }
+   figure {
+      animation: appear 300ms ease-out;
+   }
+}
+
+@keyframes appear {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+.wp-block-aeawa-blocks-carousel-wrapper {
    position: relative;
    display: grid;
    grid-template-columns: 1fr;
@@ -20,7 +41,7 @@
       }
    }
 
-   .wp-block-artedwa-blocks-carousel-controls {
+   .wp-block-aeawa-blocks-carousel-controls {
       grid-column: 1;
       grid-row: 1;
       align-self: end;
@@ -45,7 +66,7 @@
       }
    }
 
-   .wp-block-artedwa-blocks-carousel-indicators {
+   .wp-block-aeawa-blocks-carousel-indicators {
       position: relative;
       z-index: 50;
       grid-column: 1;
@@ -73,8 +94,7 @@
       transform: scale(1.1);
    }
 
-   .wp-block-artedwa-blocks-carousel-panel.is-active {
-      display: grid;
+   .wp-block-aeawa-blocks-carousel-panel.is-active {
       grid-template-columns: 1fr;
       grid-template-rows: 400px 1fr;
 
@@ -82,6 +102,10 @@
       figure {
          grid-row: 1;
          grid-column: 1;
+      }
+
+      figure {
+         place-self: center;
       }
 
       img {
@@ -105,19 +129,27 @@
    }
 }
 
+@media screen and (min-width: 678px) {
+   .wp-block-aeawa-blocks-carousel-wrapper
+      .wp-block-aeawa-blocks-carousel-panel.is-active
+      img {
+      margin-top: 3rem !important;
+   }
+}
+
 @media screen and (min-width: 1000px) {
-   .wp-block-artedwa-blocks-carousel-wrapper {
+   .wp-block-aeawa-blocks-carousel-wrapper {
       height: 100%;
       grid-template-columns: repeat(12, 1fr);
       grid-template-rows: 520px;
 
       .wp-block-query,
-      .wp-block-artedwa-blocks-carousel-controls,
-      .wp-block-artedwa-blocks-carousel-indicators {
+      .wp-block-aeawa-blocks-carousel-controls,
+      .wp-block-aeawa-blocks-carousel-indicators {
          grid-column: 1 / -1;
       }
 
-      .wp-block-artedwa-blocks-carousel-controls {
+      .wp-block-aeawa-blocks-carousel-controls {
          grid-column: 1 / -1;
          max-width: unset;
          align-self: center;
@@ -127,7 +159,8 @@
          }
       }
 
-      .wp-block-artedwa-blocks-carousel-panel.is-active {
+      .wp-block-aeawa-blocks-carousel-panel.is-active {
+         opacity: 1;
          grid-template-columns: repeat(12, 1fr);
          grid-template-rows: 520px;
 
@@ -137,6 +170,7 @@
             margin-top: unset !important;
             grid-column: 2 / span 5;
             grid-row: 1;
+            flex-wrap: nowrap;
          }
 
          figure,
@@ -152,10 +186,6 @@
             grid-column: 7 / span 6;
             margin-right: 64px;
             height: 100%;
-
-            img {
-               margin-top: 3rem;
-            }
          }
       }
    }

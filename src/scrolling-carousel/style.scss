@@ -1,5 +1,5 @@
 .home-about-2 {
-   .wp-block-artedwa-blocks-scrolling-carousel {
+   .wp-block-aeawa-blocks-scrolling-carousel {
       position: relative;
 
       .controls {
@@ -65,17 +65,17 @@
    }
 
    /* Hide browser scrollbar */
-   .wp-block-artedwa-blocks-scrolling-carousel ul {
+   .wp-block-aeawa-blocks-scrolling-carousel ul {
       -ms-overflow-style: none; /* Internet Explorer 10+ */
       scrollbar-width: none; /* Firefox */
    }
 
-   .wp-block-artedwa-blocks-scrolling-carousel ul::-webkit-scrollbar {
+   .wp-block-aeawa-blocks-scrolling-carousel ul::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
    }
 
    @media screen and (min-width: 678px) {
-      .wp-block-artedwa-blocks-scrolling-carousel {
+      .wp-block-aeawa-blocks-scrolling-carousel {
          .wp-block-query {
             ul {
                li {

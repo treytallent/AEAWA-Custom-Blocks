@@ -13,6 +13,6 @@ $read_more_url = get_field('read_more_url', $post_id);
 $primary_image = get_field('primary_image', $post_id);
 ?>
 
-<div <?php echo get_block_wrapper_attributes() ?> data-wp-interactive="artedwa-carousel" <?php echo wp_interactivity_data_wp_context($context) ?> data-wp-init="callbacks.initPane" data-wp-watch="callbacks.setContext" data-wp-class--is-active="context.isActive">
+<div <?php echo get_block_wrapper_attributes() ?> data-wp-interactive="aeawa-carousel" <?php echo wp_interactivity_data_wp_context($context) ?> data-wp-init="callbacks.initPane" data-wp-watch="callbacks.setContext" data-wp-class--is-active="context.isActive">
     <?php echo $content ?>
 </div>

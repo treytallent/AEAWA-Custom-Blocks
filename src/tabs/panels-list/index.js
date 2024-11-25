@@ -1,13 +1,11 @@
-import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
 import metadata from "./block.json"
 
-const blocktemplate = [["artedwa-blocks/panel"], ["artedwa-blocks/panel"]]
+const blocktemplate = [["aeawa-blocks/panel"], ["aeawa-blocks/panel"]]
 
 registerBlockType(metadata.name, {
    edit: () => {
-      // console.log("rendering panels list")
       const blockProps = useBlockProps()
       return (
          <div {...blockProps}>

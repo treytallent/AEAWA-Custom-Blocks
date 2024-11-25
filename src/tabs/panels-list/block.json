@@ -1,14 +1,14 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/panels-list",
+   "name": "aeawa-blocks/panels-list",
    "version": "0.1.0",
    "title": "Panels List",
    "category": "widgets",
    "icon": "media-interactive",
    "description": "Panels List Block",
    "example": {},
-   "allowedBlocks": ["artedwa-blocks/panel"],
+   "allowedBlocks": ["aeawa-blocks/panel"],
    "attributes": {
       "lock": {
          "type": "object",
@@ -28,7 +28,7 @@
          "blockGap": true
       }
    },
-   "textdomain": "artedwa",
+   "textdomain": "aeawa",
    "editorScript": "file:./index.js",
    "render": "file:./render.php"
 }

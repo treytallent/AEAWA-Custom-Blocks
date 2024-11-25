@@ -4,7 +4,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes();
 
 ?>
 
-<div <?php echo $block_wrapper_attributes ?> data-wp-interactive="artedwa-carousel">
+<div <?php echo $block_wrapper_attributes ?> data-wp-interactive="aeawa-carousel">
     <?php
     foreach ($indicators as $indicator) {
         $context = array(

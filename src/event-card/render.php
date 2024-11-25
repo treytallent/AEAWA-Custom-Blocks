@@ -7,15 +7,8 @@ $primary_image = get_field('event-fields-img', $post_id);
 $start_date = get_field('event-fields-start-date', $post_id);
 $end_date = get_field('event-fields-end-date', $post_id);
 $read_more_url = get_field('event-fields-url', $post_id);
-$category = get_field('category', $post_id);
-$parent_category = $attributes["category"];
 $block_wrapper_attributes = get_block_wrapper_attributes();
-
-if (is_array($category) && !empty($category)) {
-    $category = $category[0]->name;
-}
 ?>
-
 <div <?php echo ($block_wrapper_attributes) ?>>
     <img src=<?php echo ($primary_image) ?>></img>
     <div class="card-container">

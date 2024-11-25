@@ -1,10 +1,10 @@
-.wp-block-artedwa-blocks-tabs-wrapper {
+.wp-block-aeawa-blocks-tabs-wrapper {
    max-width: 1280px;
    margin: 0 2rem;
 }
 
 @media screen and (min-width: 1344px) {
-   .wp-block-artedwa-blocks-tabs-wrapper {
+   .wp-block-aeawa-blocks-tabs-wrapper {
       max-width: 1280px;
       margin: 0 auto;
    }
@@ -20,7 +20,7 @@ div[aria-label="Select an Icon"] button svg {
    fill: none;
 }
 
-.wp-block-artedwa-blocks-tabs-list {
+.wp-block-aeawa-blocks-tabs-list {
    div {
       div {
          display: flex;
@@ -29,7 +29,7 @@ div[aria-label="Select an Icon"] button svg {
    }
 }
 
-.wp-block-artedwa-blocks-tab {
+.wp-block-aeawa-blocks-tab {
    h2 {
       font-size: 18px;
       line-height: 24px;
@@ -37,6 +37,10 @@ div[aria-label="Select an Icon"] button svg {
    }
 }
 
-.wp-block-artedwa-blocks-panel:first-of-type {
+.wp-block-aeawa-blocks-panel {
+   display: none;
+}
+
+.wp-block-aeawa-blocks-panel.is-active {
    display: block;
 }

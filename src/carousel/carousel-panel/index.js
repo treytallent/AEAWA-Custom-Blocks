@@ -3,7 +3,7 @@ import { registerBlockType } from "@wordpress/blocks"
 import metadata from "./block.json"
 
 registerBlockType(metadata.name, {
-   edit: ({ attributes: { id, isActive }, setAttributes, clientId }) => {
+   edit: () => {
       const blockProps = useBlockProps()
       return (
          <div {...blockProps}>

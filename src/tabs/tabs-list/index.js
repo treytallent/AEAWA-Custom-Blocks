@@ -1,17 +1,11 @@
-import { __ } from "@wordpress/i18n"
 import { registerBlockType } from "@wordpress/blocks"
 import { InnerBlocks, useBlockProps } from "@wordpress/block-editor"
 import metadata from "./block.json"
 
-const blocktemplate = [["artedwa-blocks/tab"], ["artedwa-blocks/tab"]]
+const blocktemplate = [["aeawa-blocks/tab"], ["aeawa-blocks/tab"]]
 
 registerBlockType(metadata.name, {
-   edit: props => {
-      const test = term => {
-         console.log(term)
-      }
-
-      // console.log("rendering tabs list")
+   edit: () => {
       const blockProps = useBlockProps()
       return (
          <div {...blockProps}>

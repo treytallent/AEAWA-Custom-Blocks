@@ -1,7 +1,7 @@
 {
    "$schema": "https://schemas.wp.org/trunk/block.json",
    "apiVersion": 3,
-   "name": "artedwa-blocks/carousel-wrapper",
+   "name": "aeawa-blocks/carousel-wrapper",
    "version": "0.1.0",
    "title": "Carousel",
    "category": "widgets",
@@ -23,7 +23,7 @@
          "default": 0
       }
    },
-   "textdomain": "artedwa",
+   "textdomain": "aeawa",
    "editorScript": "file:./index.js",
    "editorStyle": "file:./index.css",
    "style": "file:./style-index.css",

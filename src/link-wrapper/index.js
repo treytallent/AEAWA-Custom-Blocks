@@ -20,7 +20,6 @@ registerBlockType(metadata.name, {
             <InspectorControls>
                <PanelBody title="Link Wrapper Options">
                   <TextControl
-                     __nextHasNoMarginBottom
                      label="Link URL"
                      value={linkUrl}
                      onChange={handleLinkUrl}
