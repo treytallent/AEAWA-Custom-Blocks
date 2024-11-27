@@ -101,6 +101,16 @@
    }
 }
 
+.wp-block-aeawa-blocks-panel.member-resources-panel {
+   font-size: 18px;
+   line-height: 28px;
+   text-align: center;
+
+   .wa_login_shortcode {
+      display: none;
+   }
+}
+
 @keyframes appear {
    from {
       opacity: 0;
